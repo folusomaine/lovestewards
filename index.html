@@ -1,0 +1,1576 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title>Love Stewards — Thoughtfully Curated Gift Boxes</title>
+  <link rel="preconnect" href="https://fonts.googleapis.com" />
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
+  <link href="https://fonts.googleapis.com/css2?family=Playfair+Display:ital,wght@0,400;0,500;0,600;0,700;1,400;1,500&family=Inter:wght@300;400;500;600&display=swap" rel="stylesheet" />
+  <style>
+    /* ─── Reset & Base ─────────────────────────────────────────── */
+    *, *::before, *::after { box-sizing: border-box; margin: 0; padding: 0; }
+
+    :root {
+      --cream:      #FDF8F3;
+      --blush:      #F2D4CF;
+      --blush-light:#FBF0EE;
+      --champagne:  #F7E8CE;
+      --gold:       #C8A067;
+      --gold-dark:  #A07840;
+      --brown:      #3D2514;
+      --text:       #4A3728;
+      --text-light: #7A6259;
+      --white:      #FFFFFF;
+      --shadow:     0 4px 24px rgba(61,37,20,.08);
+      --shadow-lg:  0 12px 48px rgba(61,37,20,.12);
+      --radius:     16px;
+      --radius-lg:  28px;
+    }
+
+    html { scroll-behavior: smooth; }
+
+    body {
+      font-family: 'Inter', sans-serif;
+      background: var(--cream);
+      color: var(--text);
+      line-height: 1.7;
+      overflow-x: hidden;
+    }
+
+    h1, h2, h3, h4 {
+      font-family: 'Playfair Display', serif;
+      color: var(--brown);
+      line-height: 1.25;
+    }
+
+    img { display: block; max-width: 100%; }
+
+    a { text-decoration: none; color: inherit; }
+
+    /* ─── Utility ──────────────────────────────────────────────── */
+    .container {
+      width: min(1120px, 90%);
+      margin-inline: auto;
+    }
+
+    .section {
+      padding: 96px 0;
+    }
+
+    .section-label {
+      font-family: 'Inter', sans-serif;
+      font-size: .75rem;
+      font-weight: 600;
+      letter-spacing: .14em;
+      text-transform: uppercase;
+      color: var(--gold);
+      margin-bottom: 12px;
+    }
+
+    .section-title {
+      font-size: clamp(1.75rem, 4vw, 2.75rem);
+      margin-bottom: 16px;
+    }
+
+    .section-subtitle {
+      font-size: 1.05rem;
+      color: var(--text-light);
+      max-width: 560px;
+    }
+
+    .section-header {
+      margin-bottom: 56px;
+    }
+
+    .section-header.centered {
+      text-align: center;
+    }
+
+    .section-header.centered .section-subtitle {
+      margin-inline: auto;
+    }
+
+    /* ─── Buttons ──────────────────────────────────────────────── */
+    .btn {
+      display: inline-flex;
+      align-items: center;
+      gap: 8px;
+      padding: 14px 28px;
+      border-radius: 50px;
+      font-family: 'Inter', sans-serif;
+      font-size: .9rem;
+      font-weight: 600;
+      cursor: pointer;
+      border: none;
+      transition: all .25s ease;
+      white-space: nowrap;
+    }
+
+    .btn-primary {
+      background: var(--gold);
+      color: var(--white);
+    }
+
+    .btn-primary:hover {
+      background: var(--gold-dark);
+      transform: translateY(-2px);
+      box-shadow: 0 8px 24px rgba(200,160,103,.35);
+    }
+
+    .btn-outline {
+      background: transparent;
+      color: var(--brown);
+      border: 2px solid var(--gold);
+    }
+
+    .btn-outline:hover {
+      background: var(--gold);
+      color: var(--white);
+      transform: translateY(-2px);
+    }
+
+    .btn-ghost {
+      background: rgba(255,255,255,.15);
+      color: var(--white);
+      border: 2px solid rgba(255,255,255,.5);
+      backdrop-filter: blur(8px);
+    }
+
+    .btn-ghost:hover {
+      background: rgba(255,255,255,.25);
+      border-color: var(--white);
+      transform: translateY(-2px);
+    }
+
+    /* ─── Nav ──────────────────────────────────────────────────── */
+    nav {
+      position: fixed;
+      top: 0; left: 0; right: 0;
+      z-index: 100;
+      padding: 18px 0;
+      transition: background .3s, box-shadow .3s;
+    }
+
+    nav.scrolled {
+      background: rgba(253,248,243,.95);
+      backdrop-filter: blur(12px);
+      box-shadow: 0 2px 20px rgba(61,37,20,.08);
+    }
+
+    nav .container {
+      display: flex;
+      align-items: center;
+      justify-content: space-between;
+    }
+
+    .nav-logo {
+      font-family: 'Playfair Display', serif;
+      font-size: 1.35rem;
+      font-weight: 700;
+      color: var(--white);
+      transition: color .3s;
+    }
+
+    nav.scrolled .nav-logo { color: var(--brown); }
+
+    .nav-links {
+      display: flex;
+      gap: 32px;
+      list-style: none;
+    }
+
+    .nav-links a {
+      font-size: .875rem;
+      font-weight: 500;
+      color: rgba(255,255,255,.85);
+      transition: color .3s;
+    }
+
+    nav.scrolled .nav-links a { color: var(--text); }
+
+    .nav-links a:hover { color: var(--gold); }
+
+    nav.scrolled .nav-links a:hover { color: var(--gold); }
+
+    .nav-cta {
+      background: var(--gold);
+      color: var(--white) !important;
+      padding: 8px 20px;
+      border-radius: 50px;
+    }
+
+    nav.scrolled .nav-cta { color: var(--white) !important; }
+
+    .nav-cta:hover { background: var(--gold-dark); opacity: 1; }
+
+    .hamburger {
+      display: none;
+      flex-direction: column;
+      gap: 5px;
+      cursor: pointer;
+      padding: 4px;
+    }
+
+    .hamburger span {
+      display: block;
+      width: 24px;
+      height: 2px;
+      background: var(--white);
+      border-radius: 2px;
+      transition: all .3s;
+    }
+
+    nav.scrolled .hamburger span { background: var(--brown); }
+
+    /* ─── Hero ─────────────────────────────────────────────────── */
+    .hero {
+      min-height: 100vh;
+      background: linear-gradient(135deg, #3D2514 0%, #6B3E26 40%, #8B5A3A 70%, #A07840 100%);
+      display: grid;
+      grid-template-columns: 1fr 1fr;
+      align-items: center;
+      gap: 64px;
+      padding: 140px 0 80px;
+      position: relative;
+      overflow: hidden;
+    }
+
+    .hero::before {
+      content: '';
+      position: absolute;
+      inset: 0;
+      background: url("data:image/svg+xml,%3Csvg width='60' height='60' viewBox='0 0 60 60' xmlns='http://www.w3.org/2000/svg'%3E%3Cg fill='none' fill-rule='evenodd'%3E%3Cg fill='%23ffffff' fill-opacity='0.03'%3E%3Ccircle cx='30' cy='30' r='2'/%3E%3C/g%3E%3C/g%3E%3C/svg%3E");
+    }
+
+    .hero-content {
+      position: relative;
+      z-index: 1;
+    }
+
+    .hero-badge {
+      display: inline-flex;
+      align-items: center;
+      gap: 8px;
+      background: rgba(200,160,103,.2);
+      border: 1px solid rgba(200,160,103,.4);
+      border-radius: 50px;
+      padding: 6px 16px;
+      font-size: .8rem;
+      font-weight: 600;
+      letter-spacing: .1em;
+      text-transform: uppercase;
+      color: var(--champagne);
+      margin-bottom: 24px;
+    }
+
+    .hero-badge::before {
+      content: '✦';
+      font-size: .7rem;
+      color: var(--gold);
+    }
+
+    .hero h1 {
+      font-size: clamp(2.5rem, 6vw, 4rem);
+      color: var(--white);
+      margin-bottom: 20px;
+      font-style: italic;
+    }
+
+    .hero h1 em {
+      font-style: normal;
+      color: var(--champagne);
+    }
+
+    .hero-sub {
+      font-size: 1.1rem;
+      color: rgba(255,255,255,.8);
+      margin-bottom: 20px;
+      max-width: 480px;
+    }
+
+    .hero-para {
+      font-size: .95rem;
+      color: rgba(255,255,255,.65);
+      max-width: 460px;
+      margin-bottom: 36px;
+      line-height: 1.8;
+    }
+
+    .hero-actions {
+      display: flex;
+      flex-wrap: wrap;
+      gap: 12px;
+      margin-bottom: 16px;
+    }
+
+    .hero-contact-btn {
+      margin-top: 8px;
+    }
+
+    .hero-image {
+      position: relative;
+      z-index: 1;
+    }
+
+    .hero-image-frame {
+      aspect-ratio: 4/5;
+      border-radius: var(--radius-lg);
+      background: linear-gradient(145deg, rgba(247,232,206,.15), rgba(200,160,103,.1));
+      border: 1px solid rgba(200,160,103,.25);
+      display: flex;
+      flex-direction: column;
+      align-items: center;
+      justify-content: center;
+      gap: 16px;
+      color: rgba(255,255,255,.5);
+      text-align: center;
+      padding: 40px;
+      position: relative;
+      overflow: hidden;
+    }
+
+    .hero-image-frame::before {
+      content: '';
+      position: absolute;
+      top: -50%;
+      left: -50%;
+      width: 200%;
+      height: 200%;
+      background: radial-gradient(circle at 60% 40%, rgba(200,160,103,.08) 0%, transparent 60%);
+      pointer-events: none;
+    }
+
+    .placeholder-icon {
+      font-size: 4rem;
+      opacity: .4;
+    }
+
+    .placeholder-text {
+      font-family: 'Playfair Display', serif;
+      font-size: 1rem;
+      font-style: italic;
+      opacity: .5;
+    }
+
+    .hero-float-tag {
+      position: absolute;
+      background: var(--white);
+      border-radius: 12px;
+      padding: 12px 16px;
+      box-shadow: var(--shadow-lg);
+      font-size: .8rem;
+      font-weight: 600;
+      color: var(--brown);
+    }
+
+    .hero-float-tag.tag-1 {
+      top: 24px;
+      right: -20px;
+    }
+
+    .hero-float-tag.tag-2 {
+      bottom: 64px;
+      left: -24px;
+    }
+
+    .tag-icon { font-size: 1.1rem; }
+
+    /* ─── Occasions ────────────────────────────────────────────── */
+    .occasions {
+      background: var(--white);
+    }
+
+    .occasions-grid {
+      display: grid;
+      grid-template-columns: repeat(3, 1fr);
+      gap: 24px;
+    }
+
+    .occasion-card {
+      border-radius: var(--radius);
+      padding: 32px 28px;
+      background: var(--cream);
+      border: 1px solid rgba(200,160,103,.15);
+      transition: all .3s ease;
+      cursor: default;
+    }
+
+    .occasion-card:hover {
+      transform: translateY(-6px);
+      box-shadow: var(--shadow-lg);
+      border-color: rgba(200,160,103,.35);
+    }
+
+    .occasion-icon {
+      font-size: 2rem;
+      margin-bottom: 16px;
+      display: block;
+    }
+
+    .occasion-card h3 {
+      font-size: 1.15rem;
+      margin-bottom: 8px;
+    }
+
+    .occasion-card p {
+      font-size: .875rem;
+      color: var(--text-light);
+      line-height: 1.65;
+    }
+
+    /* ─── Collections ──────────────────────────────────────────── */
+    .collections {
+      background: var(--blush-light);
+    }
+
+    .collections-grid {
+      display: grid;
+      grid-template-columns: repeat(2, 1fr);
+      gap: 28px;
+    }
+
+    .collection-card {
+      border-radius: var(--radius-lg);
+      overflow: hidden;
+      background: var(--white);
+      box-shadow: var(--shadow);
+      transition: all .3s ease;
+    }
+
+    .collection-card:hover {
+      transform: translateY(-8px);
+      box-shadow: var(--shadow-lg);
+    }
+
+    .collection-image {
+      aspect-ratio: 16/9;
+      background: linear-gradient(135deg, var(--champagne), var(--blush));
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      font-size: 3.5rem;
+      position: relative;
+      overflow: hidden;
+    }
+
+    .collection-image.c1 { background: linear-gradient(135deg, #F7E8CE, #F2D4CF); }
+    .collection-image.c2 { background: linear-gradient(135deg, #E8F0F7, #D4E8F2); }
+    .collection-image.c3 { background: linear-gradient(135deg, #F7F3CE, #F2EBD4); }
+    .collection-image.c4 { background: linear-gradient(135deg, #E8ECF0, #D4DCE8); }
+
+    .collection-body {
+      padding: 28px;
+    }
+
+    .collection-tag {
+      display: inline-block;
+      font-size: .72rem;
+      font-weight: 600;
+      letter-spacing: .1em;
+      text-transform: uppercase;
+      color: var(--gold);
+      margin-bottom: 8px;
+    }
+
+    .collection-body h3 {
+      font-size: 1.2rem;
+      margin-bottom: 10px;
+    }
+
+    .collection-body p {
+      font-size: .875rem;
+      color: var(--text-light);
+      line-height: 1.7;
+    }
+
+    /* ─── Corporate ────────────────────────────────────────────── */
+    .corporate {
+      background: linear-gradient(135deg, #3D2514 0%, #6B3E26 60%, #8B5A3A 100%);
+      color: var(--white);
+      position: relative;
+      overflow: hidden;
+    }
+
+    .corporate::before {
+      content: '';
+      position: absolute;
+      top: -40%;
+      right: -10%;
+      width: 600px;
+      height: 600px;
+      border-radius: 50%;
+      background: radial-gradient(circle, rgba(200,160,103,.12) 0%, transparent 70%);
+      pointer-events: none;
+    }
+
+    .corporate .container {
+      position: relative;
+      display: grid;
+      grid-template-columns: 1fr 1fr;
+      gap: 80px;
+      align-items: center;
+    }
+
+    .corporate .section-label { color: var(--champagne); }
+
+    .corporate .section-title { color: var(--white); }
+
+    .corporate-desc {
+      font-size: 1rem;
+      color: rgba(255,255,255,.75);
+      margin-bottom: 32px;
+      line-height: 1.8;
+    }
+
+    .corporate-perks {
+      display: grid;
+      grid-template-columns: 1fr 1fr;
+      gap: 20px;
+    }
+
+    .perk {
+      display: flex;
+      align-items: flex-start;
+      gap: 12px;
+    }
+
+    .perk-icon {
+      width: 36px;
+      height: 36px;
+      border-radius: 8px;
+      background: rgba(200,160,103,.2);
+      border: 1px solid rgba(200,160,103,.3);
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      font-size: 1rem;
+      flex-shrink: 0;
+    }
+
+    .perk-text h4 {
+      font-family: 'Inter', sans-serif;
+      font-size: .85rem;
+      font-weight: 600;
+      color: var(--champagne);
+      margin-bottom: 2px;
+    }
+
+    .perk-text p {
+      font-size: .8rem;
+      color: rgba(255,255,255,.6);
+    }
+
+    .corporate-visual {
+      display: flex;
+      flex-direction: column;
+      gap: 20px;
+    }
+
+    .corporate-stat-card {
+      background: rgba(255,255,255,.06);
+      border: 1px solid rgba(200,160,103,.2);
+      border-radius: var(--radius);
+      padding: 24px 28px;
+      backdrop-filter: blur(8px);
+    }
+
+    .corporate-stat-card .stat-num {
+      font-family: 'Playfair Display', serif;
+      font-size: 2.5rem;
+      font-weight: 700;
+      color: var(--champagne);
+      line-height: 1;
+      margin-bottom: 6px;
+    }
+
+    .corporate-stat-card .stat-label {
+      font-size: .85rem;
+      color: rgba(255,255,255,.6);
+    }
+
+    /* ─── Why Us ───────────────────────────────────────────────── */
+    .why-us {
+      background: var(--white);
+    }
+
+    .why-grid {
+      display: grid;
+      grid-template-columns: repeat(4, 1fr);
+      gap: 32px;
+    }
+
+    .why-card {
+      text-align: center;
+      padding: 40px 24px;
+      border-radius: var(--radius);
+      background: var(--cream);
+      border: 1px solid rgba(200,160,103,.12);
+      transition: all .3s;
+    }
+
+    .why-card:hover {
+      transform: translateY(-6px);
+      box-shadow: var(--shadow);
+      border-color: rgba(200,160,103,.3);
+    }
+
+    .why-icon-wrap {
+      width: 64px;
+      height: 64px;
+      border-radius: 16px;
+      background: linear-gradient(135deg, var(--champagne), var(--blush));
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      font-size: 1.6rem;
+      margin: 0 auto 20px;
+      box-shadow: 0 4px 16px rgba(200,160,103,.2);
+    }
+
+    .why-card h3 {
+      font-size: 1rem;
+      margin-bottom: 10px;
+    }
+
+    .why-card p {
+      font-size: .85rem;
+      color: var(--text-light);
+      line-height: 1.65;
+    }
+
+    /* ─── How It Works ─────────────────────────────────────────── */
+    .how-it-works {
+      background: var(--blush-light);
+    }
+
+    .steps-row {
+      display: grid;
+      grid-template-columns: 1fr 80px 1fr 80px 1fr;
+      align-items: center;
+      gap: 0;
+    }
+
+    .step {
+      text-align: center;
+      padding: 40px 24px;
+      background: var(--white);
+      border-radius: var(--radius-lg);
+      box-shadow: var(--shadow);
+      position: relative;
+    }
+
+    .step-num {
+      display: inline-flex;
+      align-items: center;
+      justify-content: center;
+      width: 40px;
+      height: 40px;
+      border-radius: 50%;
+      background: var(--gold);
+      color: var(--white);
+      font-family: 'Playfair Display', serif;
+      font-size: 1.1rem;
+      font-weight: 700;
+      margin-bottom: 20px;
+    }
+
+    .step-icon {
+      font-size: 2.5rem;
+      margin-bottom: 16px;
+      display: block;
+    }
+
+    .step h3 {
+      font-size: 1.05rem;
+      margin-bottom: 8px;
+    }
+
+    .step p {
+      font-size: .85rem;
+      color: var(--text-light);
+      line-height: 1.65;
+    }
+
+    .step-connector {
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      color: var(--gold);
+      font-size: 1.5rem;
+    }
+
+    /* ─── Testimonials ─────────────────────────────────────────── */
+    .testimonials {
+      background: var(--white);
+    }
+
+    .testimonials-grid {
+      display: grid;
+      grid-template-columns: repeat(3, 1fr);
+      gap: 28px;
+    }
+
+    .testimonial-card {
+      background: var(--cream);
+      border-radius: var(--radius-lg);
+      padding: 36px 32px;
+      border: 1px solid rgba(200,160,103,.15);
+      position: relative;
+      transition: all .3s;
+    }
+
+    .testimonial-card:hover {
+      transform: translateY(-4px);
+      box-shadow: var(--shadow-lg);
+    }
+
+    .testimonial-card::before {
+      content: '\201C';
+      position: absolute;
+      top: 16px;
+      left: 28px;
+      font-family: 'Playfair Display', serif;
+      font-size: 5rem;
+      color: var(--gold);
+      opacity: .2;
+      line-height: 1;
+    }
+
+    .stars {
+      color: var(--gold);
+      font-size: 1rem;
+      margin-bottom: 16px;
+      letter-spacing: 2px;
+    }
+
+    .testimonial-text {
+      font-size: .925rem;
+      color: var(--text);
+      line-height: 1.8;
+      font-style: italic;
+      margin-bottom: 24px;
+      position: relative;
+    }
+
+    .testimonial-author {
+      display: flex;
+      align-items: center;
+      gap: 12px;
+    }
+
+    .author-avatar {
+      width: 44px;
+      height: 44px;
+      border-radius: 50%;
+      background: linear-gradient(135deg, var(--champagne), var(--blush));
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      font-family: 'Playfair Display', serif;
+      font-weight: 600;
+      color: var(--brown);
+      font-size: 1rem;
+      flex-shrink: 0;
+    }
+
+    .author-name {
+      font-weight: 600;
+      font-size: .9rem;
+      color: var(--brown);
+    }
+
+    .author-label {
+      font-size: .78rem;
+      color: var(--text-light);
+    }
+
+    /* ─── Contact ──────────────────────────────────────────────── */
+    .contact {
+      background: var(--blush-light);
+    }
+
+    .contact-inner {
+      display: grid;
+      grid-template-columns: 1fr 1fr;
+      gap: 80px;
+      align-items: center;
+    }
+
+    .contact-info {
+      display: flex;
+      flex-direction: column;
+      gap: 24px;
+    }
+
+    .contact-item {
+      display: flex;
+      align-items: flex-start;
+      gap: 16px;
+      padding: 20px 24px;
+      background: var(--white);
+      border-radius: var(--radius);
+      box-shadow: var(--shadow);
+      border: 1px solid rgba(200,160,103,.1);
+    }
+
+    .contact-item-icon {
+      width: 44px;
+      height: 44px;
+      border-radius: 12px;
+      background: linear-gradient(135deg, var(--champagne), var(--blush));
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      font-size: 1.2rem;
+      flex-shrink: 0;
+    }
+
+    .contact-item-body h4 {
+      font-family: 'Inter', sans-serif;
+      font-size: .8rem;
+      font-weight: 600;
+      letter-spacing: .08em;
+      text-transform: uppercase;
+      color: var(--gold);
+      margin-bottom: 4px;
+    }
+
+    .contact-item-body p, .contact-item-body a {
+      font-size: .95rem;
+      color: var(--text);
+      font-weight: 500;
+    }
+
+    .contact-item-body a:hover { color: var(--gold); }
+
+    .whatsapp-section {
+      background: var(--white);
+      border-radius: var(--radius-lg);
+      padding: 40px;
+      box-shadow: var(--shadow-lg);
+      border: 1px solid rgba(200,160,103,.15);
+      text-align: center;
+    }
+
+    .whatsapp-section h3 {
+      margin-bottom: 8px;
+      font-size: 1.3rem;
+    }
+
+    .whatsapp-section p {
+      color: var(--text-light);
+      font-size: .9rem;
+      margin-bottom: 24px;
+    }
+
+    .qr-placeholder {
+      width: 180px;
+      height: 180px;
+      border-radius: 16px;
+      background: var(--cream);
+      border: 2px dashed rgba(200,160,103,.4);
+      display: flex;
+      flex-direction: column;
+      align-items: center;
+      justify-content: center;
+      gap: 8px;
+      margin: 0 auto 20px;
+      color: var(--text-light);
+      font-size: .8rem;
+    }
+
+    .qr-placeholder span:first-child { font-size: 2.5rem; }
+
+    .wa-btn {
+      display: inline-flex;
+      align-items: center;
+      gap: 8px;
+      background: #25D366;
+      color: var(--white);
+      padding: 12px 28px;
+      border-radius: 50px;
+      font-weight: 600;
+      font-size: .9rem;
+      transition: all .25s;
+    }
+
+    .wa-btn:hover {
+      background: #128C7E;
+      transform: translateY(-2px);
+      box-shadow: 0 8px 24px rgba(37,211,102,.3);
+    }
+
+    /* ─── Footer ───────────────────────────────────────────────── */
+    footer {
+      background: var(--brown);
+      color: rgba(255,255,255,.7);
+      padding: 56px 0 32px;
+    }
+
+    .footer-top {
+      display: grid;
+      grid-template-columns: 1.5fr 1fr 1fr;
+      gap: 56px;
+      margin-bottom: 48px;
+      padding-bottom: 48px;
+      border-bottom: 1px solid rgba(255,255,255,.1);
+    }
+
+    .footer-brand-name {
+      font-family: 'Playfair Display', serif;
+      font-size: 1.5rem;
+      color: var(--white);
+      margin-bottom: 12px;
+    }
+
+    .footer-tagline {
+      font-size: .875rem;
+      line-height: 1.7;
+      color: rgba(255,255,255,.6);
+      margin-bottom: 24px;
+      font-style: italic;
+    }
+
+    .social-icons {
+      display: flex;
+      gap: 12px;
+    }
+
+    .social-icon {
+      width: 40px;
+      height: 40px;
+      border-radius: 10px;
+      background: rgba(255,255,255,.08);
+      border: 1px solid rgba(255,255,255,.12);
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      font-size: 1.1rem;
+      transition: all .25s;
+      color: rgba(255,255,255,.7);
+    }
+
+    .social-icon:hover {
+      background: var(--gold);
+      border-color: var(--gold);
+      color: var(--white);
+      transform: translateY(-3px);
+    }
+
+    .footer-col h4 {
+      font-family: 'Inter', sans-serif;
+      font-size: .8rem;
+      font-weight: 600;
+      letter-spacing: .1em;
+      text-transform: uppercase;
+      color: var(--champagne);
+      margin-bottom: 20px;
+    }
+
+    .footer-col ul {
+      list-style: none;
+      display: flex;
+      flex-direction: column;
+      gap: 10px;
+    }
+
+    .footer-col ul a {
+      font-size: .875rem;
+      color: rgba(255,255,255,.6);
+      transition: color .2s;
+    }
+
+    .footer-col ul a:hover { color: var(--gold); }
+
+    .footer-bottom {
+      display: flex;
+      align-items: center;
+      justify-content: space-between;
+      font-size: .8rem;
+    }
+
+    .footer-bottom p { color: rgba(255,255,255,.4); }
+
+    .footer-gold { color: var(--gold); }
+
+    /* ─── Scroll Animations ────────────────────────────────────── */
+    .reveal {
+      opacity: 0;
+      transform: translateY(32px);
+      transition: opacity .7s ease, transform .7s ease;
+    }
+
+    .reveal.visible {
+      opacity: 1;
+      transform: none;
+    }
+
+    .reveal-delay-1 { transition-delay: .1s; }
+    .reveal-delay-2 { transition-delay: .2s; }
+    .reveal-delay-3 { transition-delay: .3s; }
+    .reveal-delay-4 { transition-delay: .4s; }
+
+    /* ─── Mobile Nav ───────────────────────────────────────────── */
+    .mobile-nav {
+      display: none;
+      position: fixed;
+      top: 0; left: 0; right: 0; bottom: 0;
+      background: var(--brown);
+      z-index: 99;
+      flex-direction: column;
+      align-items: center;
+      justify-content: center;
+      gap: 32px;
+    }
+
+    .mobile-nav.open { display: flex; }
+
+    .mobile-nav a {
+      font-family: 'Playfair Display', serif;
+      font-size: 1.5rem;
+      color: var(--white);
+      transition: color .2s;
+    }
+
+    .mobile-nav a:hover { color: var(--gold); }
+
+    .mobile-nav-close {
+      position: absolute;
+      top: 24px;
+      right: 24px;
+      background: none;
+      border: none;
+      color: var(--white);
+      font-size: 1.5rem;
+      cursor: pointer;
+    }
+
+    /* ─── Responsive ───────────────────────────────────────────── */
+    @media (max-width: 1024px) {
+      .hero {
+        grid-template-columns: 1fr;
+        text-align: center;
+        padding: 120px 0 60px;
+      }
+
+      .hero-sub, .hero-para { margin-inline: auto; }
+
+      .hero-actions { justify-content: center; }
+
+      .hero-image { display: none; }
+
+      .occasions-grid { grid-template-columns: repeat(2, 1fr); }
+
+      .why-grid { grid-template-columns: repeat(2, 1fr); }
+
+      .corporate .container {
+        grid-template-columns: 1fr;
+        gap: 48px;
+      }
+
+      .corporate-visual { flex-direction: row; }
+
+      .corporate-stat-card { flex: 1; }
+
+      .steps-row {
+        grid-template-columns: 1fr;
+        gap: 20px;
+      }
+
+      .step-connector { transform: rotate(90deg); }
+
+      .testimonials-grid { grid-template-columns: 1fr; max-width: 560px; margin-inline: auto; }
+
+      .contact-inner { grid-template-columns: 1fr; gap: 40px; }
+
+      .footer-top { grid-template-columns: 1fr 1fr; }
+
+      .nav-links { display: none; }
+
+      .hamburger { display: flex; }
+    }
+
+    @media (max-width: 640px) {
+      .section { padding: 64px 0; }
+
+      .occasions-grid { grid-template-columns: 1fr; }
+
+      .collections-grid { grid-template-columns: 1fr; }
+
+      .why-grid { grid-template-columns: 1fr 1fr; }
+
+      .corporate-perks { grid-template-columns: 1fr; }
+
+      .corporate-visual { flex-direction: column; }
+
+      .hero-actions { flex-direction: column; align-items: center; }
+
+      .footer-top { grid-template-columns: 1fr; gap: 36px; }
+
+      .footer-bottom { flex-direction: column; gap: 8px; text-align: center; }
+    }
+
+    @media (max-width: 400px) {
+      .why-grid { grid-template-columns: 1fr; }
+    }
+  </style>
+</head>
+<body>
+
+  <!-- ─── Navigation ────────────────────────────────────────── -->
+  <nav id="navbar">
+    <div class="container">
+      <a href="#" class="nav-logo">Love Stewards</a>
+      <ul class="nav-links">
+        <li><a href="#occasions">Occasions</a></li>
+        <li><a href="#collections">Collections</a></li>
+        <li><a href="#corporate">Corporate</a></li>
+        <li><a href="#contact" class="nav-cta">Get in Touch</a></li>
+      </ul>
+      <div class="hamburger" id="hamburger" aria-label="Open menu">
+        <span></span><span></span><span></span>
+      </div>
+    </div>
+  </nav>
+
+  <!-- Mobile Nav -->
+  <div class="mobile-nav" id="mobileNav">
+    <button class="mobile-nav-close" id="mobileNavClose" aria-label="Close menu">✕</button>
+    <a href="#occasions" onclick="closeMobileNav()">Occasions</a>
+    <a href="#collections" onclick="closeMobileNav()">Collections</a>
+    <a href="#corporate" onclick="closeMobileNav()">Corporate</a>
+    <a href="#why" onclick="closeMobileNav()">Why Us</a>
+    <a href="#contact" onclick="closeMobileNav()">Contact</a>
+  </div>
+
+  <!-- ─── Hero ──────────────────────────────────────────────── -->
+  <section class="hero" id="hero">
+    <div class="container" style="display:grid;grid-template-columns:1fr 1fr;gap:64px;align-items:center;width:min(1120px,90%);margin-inline:auto;">
+      <div class="hero-content">
+        <div class="hero-badge">Premium Curated Gift Boxes</div>
+        <h1>Celebrate Every<br /><em>Moment Beautifully.</em></h1>
+        <p class="hero-sub">Thoughtfully curated gift boxes for life's meaningful occasions.</p>
+        <p class="hero-para">We believe that the best gifts speak before they're opened. Every Love Stewards box is crafted with intention — to make the recipient feel truly seen, celebrated, and cherished.</p>
+        <div class="hero-actions">
+          <a href="#collections" class="btn btn-primary">Explore Gift Boxes</a>
+          <a href="#contact" class="btn btn-ghost">Create a Custom Box</a>
+        </div>
+        <a href="#contact" class="btn btn-ghost hero-contact-btn" style="display:inline-flex;margin-top:4px;font-size:.8rem;padding:10px 20px;border-color:rgba(255,255,255,.3);">↓ Get in Touch</a>
+      </div>
+      <div class="hero-image">
+        <div class="hero-image-frame">
+          <div class="placeholder-icon">🎁</div>
+          <p class="placeholder-text">Premium gift box imagery</p>
+          <div class="hero-float-tag tag-1">
+            <span class="tag-icon">✦</span> Curated with love
+          </div>
+          <div class="hero-float-tag tag-2">
+            <span class="tag-icon">📦</span> Free personalisation
+          </div>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <!-- ─── Occasions ─────────────────────────────────────────── -->
+  <section class="section occasions" id="occasions">
+    <div class="container">
+      <div class="section-header reveal">
+        <p class="section-label">Made for Every Milestone</p>
+        <h2 class="section-title">Occasions We Cater For</h2>
+        <p class="section-subtitle">Whatever the moment, we have the perfect gift to make it unforgettable.</p>
+      </div>
+      <div class="occasions-grid">
+        <div class="occasion-card reveal reveal-delay-1">
+          <span class="occasion-icon">🎂</span>
+          <h3>Birthdays</h3>
+          <p>Make their special day extraordinary with a box as unique as they are. From milestone birthdays to everyday celebrations.</p>
+        </div>
+        <div class="occasion-card reveal reveal-delay-2">
+          <span class="occasion-icon">💍</span>
+          <h3>Weddings</h3>
+          <p>Gift the couple a beautifully curated box to mark the beginning of their forever. Elegant, meaningful, and memorable.</p>
+        </div>
+        <div class="occasion-card reveal reveal-delay-3">
+          <span class="occasion-icon">🥂</span>
+          <h3>Anniversaries</h3>
+          <p>Celebrate years of love and togetherness with a thoughtfully assembled box that honours every chapter of your story.</p>
+        </div>
+        <div class="occasion-card reveal reveal-delay-1">
+          <span class="occasion-icon">🏢</span>
+          <h3>Corporate Gifting</h3>
+          <p>Impress clients, reward teams, and strengthen relationships with premium branded gift boxes that reflect your values.</p>
+        </div>
+        <div class="occasion-card reveal reveal-delay-2">
+          <span class="occasion-icon">🙏</span>
+          <h3>Thank You Gifts</h3>
+          <p>Express sincere gratitude in the most refined way. A gesture that goes beyond words and leaves a lasting impression.</p>
+        </div>
+        <div class="occasion-card reveal reveal-delay-3">
+          <span class="occasion-icon">💛</span>
+          <h3>Just Because</h3>
+          <p>Sometimes the most meaningful gifts need no occasion at all. Surprise someone you love simply because they deserve it.</p>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <!-- ─── Collections ───────────────────────────────────────── -->
+  <section class="section collections" id="collections">
+    <div class="container">
+      <div class="section-header centered reveal">
+        <p class="section-label">Thoughtfully Assembled</p>
+        <h2 class="section-title">Our Signature Collections</h2>
+        <p class="section-subtitle">Each collection is carefully curated to evoke a feeling — not just deliver a gift.</p>
+      </div>
+      <div class="collections-grid">
+        <div class="collection-card reveal reveal-delay-1">
+          <div class="collection-image c1">🎊</div>
+          <div class="collection-body">
+            <span class="collection-tag">Signature</span>
+            <h3>Celebration Collection</h3>
+            <p>Joy, colour, and confetti — this collection is pure festivity. Designed for birthdays, milestones, and every victory worth toasting.</p>
+          </div>
+        </div>
+        <div class="collection-card reveal reveal-delay-2">
+          <div class="collection-image c2">🌿</div>
+          <div class="collection-body">
+            <span class="collection-tag">Wellness</span>
+            <h3>Self-Care Collection</h3>
+            <p>A nurturing blend of luxe bath, beauty, and relaxation essentials. The perfect reminder to slow down and savour the moment.</p>
+          </div>
+        </div>
+        <div class="collection-card reveal reveal-delay-3">
+          <div class="collection-image c3">✨</div>
+          <div class="collection-body">
+            <span class="collection-tag">Premium</span>
+            <h3>Luxury Essentials Collection</h3>
+            <p>The finest things, beautifully wrapped. Indulgent, elevated, and crafted for those who appreciate the extraordinary in everyday life.</p>
+          </div>
+        </div>
+        <div class="collection-card reveal reveal-delay-4">
+          <div class="collection-image c4">🤝</div>
+          <div class="collection-body">
+            <span class="collection-tag">Corporate</span>
+            <h3>Corporate Appreciation Collection</h3>
+            <p>Make your brand feel warm and human. Thoughtfully selected items that communicate gratitude and elevate your professional relationships.</p>
+          </div>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <!-- ─── Corporate ─────────────────────────────────────────── -->
+  <section class="section corporate" id="corporate">
+    <div class="container">
+      <div>
+        <p class="section-label reveal">For Businesses</p>
+        <h2 class="section-title reveal" style="color:var(--white);margin-bottom:20px;">Elevated Corporate Gifting</h2>
+        <p class="corporate-desc reveal">Whether you're rewarding your team, welcoming new clients, or celebrating company milestones — Love Stewards delivers gifting experiences that reflect the care your business puts into every relationship.</p>
+        <div class="corporate-perks reveal">
+          <div class="perk">
+            <div class="perk-icon">🏷️</div>
+            <div class="perk-text">
+              <h4>Custom Branding</h4>
+              <p>Your logo, your message, your impression</p>
+            </div>
+          </div>
+          <div class="perk">
+            <div class="perk-icon">📦</div>
+            <div class="perk-text">
+              <h4>Bulk Order Discounts</h4>
+              <p>Competitive pricing for large orders</p>
+            </div>
+          </div>
+          <div class="perk">
+            <div class="perk-icon">🚚</div>
+            <div class="perk-text">
+              <h4>Seamless Delivery</h4>
+              <p>Reliable fulfilment to any destination</p>
+            </div>
+          </div>
+          <div class="perk">
+            <div class="perk-icon">💼</div>
+            <div class="perk-text">
+              <h4>Client & Employee Care</h4>
+              <p>Gifts that build lasting loyalty</p>
+            </div>
+          </div>
+        </div>
+        <a href="#contact" class="btn btn-primary reveal" style="margin-top:36px;display:inline-flex;">Enquire About Corporate Orders</a>
+      </div>
+      <div class="corporate-visual reveal">
+        <div class="corporate-stat-card">
+          <div class="stat-num">100%</div>
+          <div class="stat-label">Bespoke presentation — every single box</div>
+        </div>
+        <div class="corporate-stat-card">
+          <div class="stat-num">✦</div>
+          <div class="stat-label" style="font-size:1rem;color:rgba(255,255,255,.7);font-style:italic;">"Felt premium from the packaging to every detail inside."</div>
+        </div>
+        <div class="corporate-stat-card">
+          <div class="stat-num">🚀</div>
+          <div class="stat-label">Fast turnaround on bulk corporate orders</div>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <!-- ─── Why Us ────────────────────────────────────────────── -->
+  <section class="section why-us" id="why">
+    <div class="container">
+      <div class="section-header centered reveal">
+        <p class="section-label">Our Promise</p>
+        <h2 class="section-title">Why Choose Love Stewards</h2>
+        <p class="section-subtitle">Every detail is considered. Every box is a promise kept.</p>
+      </div>
+      <div class="why-grid">
+        <div class="why-card reveal reveal-delay-1">
+          <div class="why-icon-wrap">💝</div>
+          <h3>Curated With Intention</h3>
+          <p>Nothing is chosen at random. Every item earns its place in your box with purpose and meaning behind each selection.</p>
+        </div>
+        <div class="why-card reveal reveal-delay-2">
+          <div class="why-icon-wrap">🎀</div>
+          <h3>Premium Presentation</h3>
+          <p>The unboxing is part of the gift. Our packaging is designed to delight from the very first glance.</p>
+        </div>
+        <div class="why-card reveal reveal-delay-3">
+          <div class="why-icon-wrap">✍️</div>
+          <h3>Personalised Touch</h3>
+          <p>From handwritten notes to custom selections, every box can be tailored to feel deeply personal.</p>
+        </div>
+        <div class="why-card reveal reveal-delay-4">
+          <div class="why-icon-wrap">📬</div>
+          <h3>Reliable & Timely Delivery</h3>
+          <p>We understand that timing matters. Your gifts arrive when they need to — beautifully intact, always on time.</p>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <!-- ─── How It Works ──────────────────────────────────────── -->
+  <section class="section how-it-works" id="how">
+    <div class="container">
+      <div class="section-header centered reveal">
+        <p class="section-label">Simple & Seamless</p>
+        <h2 class="section-title">How It Works</h2>
+        <p class="section-subtitle">Three easy steps to give a gift they'll never forget.</p>
+      </div>
+      <div class="steps-row">
+        <div class="step reveal reveal-delay-1">
+          <span class="step-icon">🎁</span>
+          <div class="step-num">1</div>
+          <h3>Choose Your Gift Box</h3>
+          <p>Browse our signature collections or describe your occasion and we'll guide you to the perfect match.</p>
+        </div>
+        <div class="step-connector reveal">→</div>
+        <div class="step reveal reveal-delay-2">
+          <span class="step-icon">✍️</span>
+          <div class="step-num">2</div>
+          <h3>Personalise Your Message</h3>
+          <p>Add a heartfelt note, select special add-ons, or let us customise the contents to suit your recipient.</p>
+        </div>
+        <div class="step-connector reveal">→</div>
+        <div class="step reveal reveal-delay-3">
+          <span class="step-icon">🚚</span>
+          <div class="step-num">3</div>
+          <h3>We Deliver With Care</h3>
+          <p>Sit back while we handle the rest. Your beautifully wrapped gift is delivered with love and precision.</p>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <!-- ─── Testimonials ──────────────────────────────────────── -->
+  <section class="section testimonials" id="testimonials">
+    <div class="container">
+      <div class="section-header centered reveal">
+        <p class="section-label">Kind Words</p>
+        <h2 class="section-title">What Our Customers Say</h2>
+        <p class="section-subtitle">We measure our success in the smiles we create.</p>
+      </div>
+      <div class="testimonials-grid">
+        <div class="testimonial-card reveal reveal-delay-1">
+          <div class="stars">★★★★★</div>
+          <p class="testimonial-text">I loved it, they loved it. From the packaging, to the arrangement, to the content — everything was very well done. It felt premium. I'll definitely reorder another time. Kudos to your sister, for a job well done.</p>
+          <div class="testimonial-author">
+            <div class="author-avatar">I</div>
+            <div>
+              <div class="author-name">Isreal</div>
+              <div class="author-label">Verified Customer</div>
+            </div>
+          </div>
+        </div>
+        <div class="testimonial-card reveal reveal-delay-2">
+          <div class="stars">★★★★★</div>
+          <p class="testimonial-text">Absolutely stunning presentation. I ordered a box for my partner's birthday and the reaction was priceless. Every detail felt considered and the quality was outstanding throughout.</p>
+          <div class="testimonial-author">
+            <div class="author-avatar">M</div>
+            <div>
+              <div class="author-name">Michael</div>
+              <div class="author-label">Verified Customer</div>
+            </div>
+          </div>
+        </div>
+        <div class="testimonial-card reveal reveal-delay-3">
+          <div class="stars">★★★★★</div>
+          <p class="testimonial-text">I've ordered from Love Stewards twice now and each time has been effortless. The personalised message made the recipient feel so special. Will always come back for meaningful gifting.</p>
+          <div class="testimonial-author">
+            <div class="author-avatar">J</div>
+            <div>
+              <div class="author-name">Janet</div>
+              <div class="author-label">Verified Customer</div>
+            </div>
+          </div>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <!-- ─── Contact ───────────────────────────────────────────── -->
+  <section class="section contact" id="contact">
+    <div class="container">
+      <div class="section-header reveal">
+        <p class="section-label">Reach Out</p>
+        <h2 class="section-title">Let's Create Something Beautiful</h2>
+        <p class="section-subtitle">We'd love to hear about your occasion. Get in touch and let us help you find the perfect gift.</p>
+      </div>
+      <div class="contact-inner">
+        <div class="contact-info">
+          <div class="contact-item reveal reveal-delay-1">
+            <div class="contact-item-icon">📞</div>
+            <div class="contact-item-body">
+              <h4>Call Us</h4>
+              <a href="tel:07947908615">07947 908615</a>
+            </div>
+          </div>
+          <div class="contact-item reveal reveal-delay-2">
+            <div class="contact-item-icon">📱</div>
+            <div class="contact-item-body">
+              <h4>Alternative Number</h4>
+              <a href="tel:07442910982">07442 910982</a>
+            </div>
+          </div>
+          <div class="contact-item reveal reveal-delay-3">
+            <div class="contact-item-icon">💬</div>
+            <div class="contact-item-body">
+              <h4>WhatsApp</h4>
+              <p>Scan the code or tap to message us directly</p>
+            </div>
+          </div>
+          <div class="contact-item reveal reveal-delay-4">
+            <div class="contact-item-icon">⏰</div>
+            <div class="contact-item-body">
+              <h4>Response Time</h4>
+              <p>We typically respond within a few hours</p>
+            </div>
+          </div>
+        </div>
+        <div class="whatsapp-section reveal">
+          <h3>Message Us on WhatsApp</h3>
+          <p>The quickest way to discuss your order or enquiry</p>
+          <div class="qr-placeholder">
+            <span>📱</span>
+            <span>WhatsApp QR Code</span>
+          </div>
+          <a href="https://wa.me/447947908615" class="wa-btn" target="_blank" rel="noopener noreferrer">
+            💬 Open WhatsApp Chat
+          </a>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <!-- ─── Footer ────────────────────────────────────────────── -->
+  <footer>
+    <div class="container">
+      <div class="footer-top">
+        <div>
+          <div class="footer-brand-name">Love Stewards</div>
+          <p class="footer-tagline">Stewarding Meaningful Moments<br />Through Thoughtful Gifting.</p>
+          <div class="social-icons">
+            <a href="#" class="social-icon" aria-label="Instagram" title="Instagram (coming soon)">📸</a>
+            <a href="#" class="social-icon" aria-label="TikTok" title="TikTok (coming soon)">🎵</a>
+          </div>
+        </div>
+        <div class="footer-col">
+          <h4>Explore</h4>
+          <ul>
+            <li><a href="#occasions">Occasions</a></li>
+            <li><a href="#collections">Collections</a></li>
+            <li><a href="#corporate">Corporate Gifting</a></li>
+            <li><a href="#how">How It Works</a></li>
+          </ul>
+        </div>
+        <div class="footer-col">
+          <h4>Contact</h4>
+          <ul>
+            <li><a href="tel:07947908615">07947 908615</a></li>
+            <li><a href="tel:07442910982">07442 910982</a></li>
+            <li><a href="https://wa.me/447947908615" target="_blank" rel="noopener noreferrer">WhatsApp Us</a></li>
+          </ul>
+        </div>
+      </div>
+      <div class="footer-bottom">
+        <p>© 2025 <span class="footer-gold">Love Stewards</span>. All rights reserved.</p>
+        <p>Made with <span class="footer-gold">♥</span> for every meaningful moment</p>
+      </div>
+    </div>
+  </footer>
+
+  <!-- ─── Scripts ───────────────────────────────────────────── -->
+  <script>
+    // Sticky nav
+    const navbar = document.getElementById('navbar');
+    window.addEventListener('scroll', () => {
+      navbar.classList.toggle('scrolled', window.scrollY > 60);
+    });
+
+    // Mobile nav
+    const hamburger = document.getElementById('hamburger');
+    const mobileNav = document.getElementById('mobileNav');
+    const mobileNavClose = document.getElementById('mobileNavClose');
+
+    hamburger.addEventListener('click', () => {
+      mobileNav.classList.add('open');
+      document.body.style.overflow = 'hidden';
+    });
+
+    mobileNavClose.addEventListener('click', closeMobileNav);
+
+    function closeMobileNav() {
+      mobileNav.classList.remove('open');
+      document.body.style.overflow = '';
+    }
+
+    // Scroll reveal
+    const reveals = document.querySelectorAll('.reveal');
+    const observer = new IntersectionObserver((entries) => {
+      entries.forEach(entry => {
+        if (entry.isIntersecting) {
+          entry.target.classList.add('visible');
+          observer.unobserve(entry.target);
+        }
+      });
+    }, { threshold: 0.12, rootMargin: '0px 0px -40px 0px' });
+
+    reveals.forEach(el => observer.observe(el));
+
+    // Hero grid fix for mobile
+    function fixHeroGrid() {
+      const heroContainer = document.querySelector('.hero .container');
+      if (heroContainer) {
+        if (window.innerWidth <= 1024) {
+          heroContainer.style.gridTemplateColumns = '1fr';
+        } else {
+          heroContainer.style.gridTemplateColumns = '1fr 1fr';
+        }
+      }
+    }
+    fixHeroGrid();
+    window.addEventListener('resize', fixHeroGrid);
+  </script>
+</body>
+</html>

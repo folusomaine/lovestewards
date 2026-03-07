@@ -227,13 +227,19 @@
     .hero {
       min-height: 100vh;
       background: linear-gradient(135deg, #3D2514 0%, #6B3E26 40%, #8B5A3A 70%, #A07840 100%);
-      display: grid;
-      grid-template-columns: 1fr 1fr;
+      display: flex;
       align-items: center;
-      gap: 64px;
-      padding: 140px 0 80px;
+      padding: 120px 0 80px;
       position: relative;
       overflow: hidden;
+    }
+
+    .hero-inner {
+      display: grid;
+      grid-template-columns: 1fr 1fr;
+      gap: 72px;
+      align-items: center;
+      width: 100%;
     }
 
     .hero::before {
@@ -1048,10 +1054,11 @@
 
     /* ─── Responsive ───────────────────────────────────────────── */
     @media (max-width: 1024px) {
-      .hero {
+      .hero { padding: 100px 0 60px; }
+
+      .hero-inner {
         grid-template-columns: 1fr;
         text-align: center;
-        padding: 120px 0 60px;
       }
 
       .hero-sub, .hero-para { margin-inline: auto; }
@@ -1146,7 +1153,8 @@
 
   <!-- ─── Hero ──────────────────────────────────────────────── -->
   <section class="hero" id="hero">
-    <div class="container" style="display:grid;grid-template-columns:1fr 1fr;gap:64px;align-items:center;width:min(1120px,90%);margin-inline:auto;">
+    <div class="container">
+    <div class="hero-inner">
       <div class="hero-content">
         <div class="hero-badge">Premium Curated Gift Boxes</div>
         <h1>Celebrate Every<br /><em>Moment Beautifully.</em></h1>
@@ -1170,6 +1178,7 @@
           </div>
         </div>
       </div>
+    </div>
     </div>
   </section>
 
@@ -1558,19 +1567,6 @@
 
     reveals.forEach(el => observer.observe(el));
 
-    // Hero grid fix for mobile
-    function fixHeroGrid() {
-      const heroContainer = document.querySelector('.hero .container');
-      if (heroContainer) {
-        if (window.innerWidth <= 1024) {
-          heroContainer.style.gridTemplateColumns = '1fr';
-        } else {
-          heroContainer.style.gridTemplateColumns = '1fr 1fr';
-        }
-      }
-    }
-    fixHeroGrid();
-    window.addEventListener('resize', fixHeroGrid);
   </script>
 </body>
 </html>

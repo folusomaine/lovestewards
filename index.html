@@ -322,18 +322,18 @@
     .hero-image-frame {
       aspect-ratio: 4/5;
       border-radius: var(--radius-lg);
-      background: linear-gradient(145deg, rgba(247,232,206,.15), rgba(200,160,103,.1));
       border: 1px solid rgba(200,160,103,.25);
-      display: flex;
-      flex-direction: column;
-      align-items: center;
-      justify-content: center;
-      gap: 16px;
-      color: rgba(255,255,255,.5);
-      text-align: center;
-      padding: 40px;
       position: relative;
       overflow: hidden;
+      box-shadow: var(--shadow-lg);
+    }
+
+    .hero-image-frame img {
+      width: 100%;
+      height: 100%;
+      object-fit: cover;
+      object-position: center;
+      display: block;
     }
 
     .hero-image-frame::before {
@@ -345,18 +345,6 @@
       height: 200%;
       background: radial-gradient(circle at 60% 40%, rgba(200,160,103,.08) 0%, transparent 60%);
       pointer-events: none;
-    }
-
-    .placeholder-icon {
-      font-size: 4rem;
-      opacity: .4;
-    }
-
-    .placeholder-text {
-      font-family: 'Playfair Display', serif;
-      font-size: 1rem;
-      font-style: italic;
-      opacity: .5;
     }
 
     .hero-float-tag {
@@ -1166,8 +1154,11 @@
       </div>
       <div class="hero-image">
         <div class="hero-image-frame">
-          <div class="placeholder-icon">🎁</div>
-          <p class="placeholder-text">Premium gift box imagery</p>
+          <img
+            src="https://images.unsplash.com/photo-1513201099705-a9746e1e201f?auto=format&fit=crop&w=800&q=80"
+            alt="Elegantly wrapped gift box with satin ribbon"
+            loading="eager"
+          />
           <div class="hero-float-tag tag-1">
             <span class="tag-icon">✦</span> Curated with love
           </div>

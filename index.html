@@ -439,19 +439,22 @@
 
     .collection-image {
       aspect-ratio: 16/9;
-      background: linear-gradient(135deg, var(--champagne), var(--blush));
-      display: flex;
-      align-items: center;
-      justify-content: center;
-      font-size: 3.5rem;
-      position: relative;
       overflow: hidden;
+      position: relative;
     }
 
-    .collection-image.c1 { background: linear-gradient(135deg, #F7E8CE, #F2D4CF); }
-    .collection-image.c2 { background: linear-gradient(135deg, #E8F0F7, #D4E8F2); }
-    .collection-image.c3 { background: linear-gradient(135deg, #F7F3CE, #F2EBD4); }
-    .collection-image.c4 { background: linear-gradient(135deg, #E8ECF0, #D4DCE8); }
+    .collection-image img {
+      width: 100%;
+      height: 100%;
+      object-fit: cover;
+      object-position: center;
+      display: block;
+      transition: transform .4s ease;
+    }
+
+    .collection-card:hover .collection-image img {
+      transform: scale(1.05);
+    }
 
     .collection-body {
       padding: 28px;
@@ -1150,7 +1153,6 @@
           <a href="#collections" class="btn btn-primary">Explore Gift Boxes</a>
           <a href="#contact" class="btn btn-ghost">Create a Custom Box</a>
         </div>
-        <a href="#contact" class="btn btn-ghost hero-contact-btn" style="display:inline-flex;margin-top:4px;font-size:.8rem;padding:10px 20px;border-color:rgba(255,255,255,.3);">↓ Get in Touch</a>
       </div>
       <div class="hero-image">
         <div class="hero-image-frame">
@@ -1159,12 +1161,6 @@
             alt="Elegantly wrapped gift box with satin ribbon"
             loading="eager"
           />
-          <div class="hero-float-tag tag-1">
-            <span class="tag-icon">✦</span> Curated with love
-          </div>
-          <div class="hero-float-tag tag-2">
-            <span class="tag-icon">📦</span> Free personalisation
-          </div>
         </div>
       </div>
     </div>
@@ -1224,7 +1220,9 @@
       </div>
       <div class="collections-grid">
         <div class="collection-card reveal reveal-delay-1">
-          <div class="collection-image c1">🎊</div>
+          <div class="collection-image">
+            <img src="https://images.unsplash.com/photo-1530103862676-de8c9debad1d?auto=format&fit=crop&w=800&q=80" alt="Colourful celebration balloons" />
+          </div>
           <div class="collection-body">
             <span class="collection-tag">Signature</span>
             <h3>Celebration Collection</h3>
@@ -1232,7 +1230,9 @@
           </div>
         </div>
         <div class="collection-card reveal reveal-delay-2">
-          <div class="collection-image c2">🌿</div>
+          <div class="collection-image">
+            <img src="https://images.unsplash.com/photo-1540555700478-4be289fbecef?auto=format&fit=crop&w=800&q=80" alt="Spa self-care essentials with candle and flowers" />
+          </div>
           <div class="collection-body">
             <span class="collection-tag">Wellness</span>
             <h3>Self-Care Collection</h3>
@@ -1240,7 +1240,9 @@
           </div>
         </div>
         <div class="collection-card reveal reveal-delay-3">
-          <div class="collection-image c3">✨</div>
+          <div class="collection-image">
+            <img src="https://images.unsplash.com/photo-1515562141207-7a88fb7ce338?auto=format&fit=crop&w=800&q=80" alt="Pearl necklace in luxury jewellery box" />
+          </div>
           <div class="collection-body">
             <span class="collection-tag">Premium</span>
             <h3>Luxury Essentials Collection</h3>
@@ -1248,7 +1250,9 @@
           </div>
         </div>
         <div class="collection-card reveal reveal-delay-4">
-          <div class="collection-image c4">🤝</div>
+          <div class="collection-image">
+            <img src="https://images.unsplash.com/photo-1521791136064-7986c2920216?auto=format&fit=crop&w=800&q=80" alt="Professional business handshake" />
+          </div>
           <div class="collection-body">
             <span class="collection-tag">Corporate</span>
             <h3>Corporate Appreciation Collection</h3>
@@ -1462,7 +1466,7 @@
             <div class="contact-item-icon">⏰</div>
             <div class="contact-item-body">
               <h4>Response Time</h4>
-              <p>We typically respond within a few hours</p>
+              <p>We are standing by to hear from you</p>
             </div>
           </div>
         </div>

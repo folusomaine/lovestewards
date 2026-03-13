@@ -1,0 +1,27 @@
+<svg xmlns="http://www.w3.org/2000/svg" width="148" height="148" viewBox="0 0 148 148" role="img" aria-labelledby="title desc">
+  <title id="title">Scan to WhatsApp</title>
+  <desc id="desc">A square dark card with a gold QR-style mark and the caption Scan to WhatsApp.</desc>
+  <rect x="0.5" y="0.5" width="147" height="147" rx="2.5" fill="#222735" stroke="#323A49"/>
+
+  <g fill="#D6B07B">
+    <path d="M42 32h13c4.4 0 8 3.6 8 8v13c0 4.4-3.6 8-8 8H42c-4.4 0-8-3.6-8-8V40c0-4.4 3.6-8 8-8zm0 6v17h17V38H42z"/>
+    <path d="M93 32h13c4.4 0 8 3.6 8 8v13c0 4.4-3.6 8-8 8H93c-4.4 0-8-3.6-8-8V40c0-4.4 3.6-8 8-8zm0 6v17h17V38H93z"/>
+    <path d="M42 83h13c4.4 0 8 3.6 8 8v13c0 4.4-3.6 8-8 8H42c-4.4 0-8-3.6-8-8V91c0-4.4 3.6-8 8-8zm0 6v17h17V89H42z"/>
+
+    <circle cx="74" cy="32" r="3"/>
+    <circle cx="45" cy="74" r="3"/>
+    <circle cx="74" cy="74" r="3"/>
+    <circle cx="88" cy="74" r="3"/>
+    <circle cx="103" cy="74" r="3"/>
+    <circle cx="74" cy="103" r="3"/>
+    <circle cx="103" cy="103" r="3"/>
+
+    <rect x="71" y="41" width="6" height="23" rx="3"/>
+    <rect x="71" y="84" width="6" height="24" rx="3"/>
+    <rect x="82" y="58" width="23" height="6" rx="3"/>
+    <rect x="82" y="84" width="23" height="6" rx="3"/>
+    <rect x="96" y="95" width="6" height="13" rx="3"/>
+  </g>
+
+  <text x="74" y="129" text-anchor="middle" font-family="Menlo, Monaco, Consolas, 'Liberation Mono', monospace" font-size="10.5" letter-spacing="0.06em" fill="#BFC4CD">Scan to WhatsApp</text>
+</svg>

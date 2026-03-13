@@ -3,1563 +3,1474 @@
 <head>
   <meta charset="UTF-8" />
   <meta name="viewport" content="width=device-width, initial-scale=1.0" />
-  <title>Love Stewards — Thoughtfully Curated Gift Boxes</title>
+  <title>Love Stewards — Thoughtful Gifting</title>
   <link rel="preconnect" href="https://fonts.googleapis.com" />
   <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
-  <link href="https://fonts.googleapis.com/css2?family=Playfair+Display:ital,wght@0,400;0,500;0,600;0,700;1,400;1,500&family=Inter:wght@300;400;500;600&display=swap" rel="stylesheet" />
+  <link href="https://fonts.googleapis.com/css2?family=Plus+Jakarta+Sans:ital,wght@0,300;0,400;0,500;0,600;0,800;1,400&display=swap" rel="stylesheet" />
   <style>
-    /* ─── Reset & Base ─────────────────────────────────────────── */
     *, *::before, *::after { box-sizing: border-box; margin: 0; padding: 0; }
 
     :root {
-      --cream:      #FDF8F3;
-      --blush:      #F2D4CF;
-      --blush-light:#FBF0EE;
-      --champagne:  #F7E8CE;
-      --gold:       #C8A067;
-      --gold-dark:  #A07840;
-      --brown:      #3D2514;
-      --text:       #4A3728;
-      --text-light: #7A6259;
-      --white:      #FFFFFF;
-      --shadow:     0 4px 24px rgba(61,37,20,.08);
-      --shadow-lg:  0 12px 48px rgba(61,37,20,.12);
-      --radius:     16px;
-      --radius-lg:  28px;
+      --bg: #1B1D22;
+      --text-primary: #E8E9EA;
+      --text-secondary: #8E929A;
+      --gold: #CBA57A;
+      --card: #252830;
+      --border: rgba(255,255,255,0.08);
+      --ghost: rgba(255,255,255,0.02);
+      --sidebar-w: 65px;
+      --nav-h: 80px;
     }
 
     html { scroll-behavior: smooth; }
 
     body {
-      font-family: 'Inter', sans-serif;
-      background: var(--cream);
-      color: var(--text);
-      line-height: 1.7;
+      background: var(--bg);
+      color: var(--text-primary);
+      font-family: 'Plus Jakarta Sans', sans-serif;
+      font-weight: 400;
+      line-height: 1.6;
       overflow-x: hidden;
     }
 
-    h1, h2, h3, h4 {
-      font-family: 'Playfair Display', serif;
-      color: var(--brown);
-      line-height: 1.25;
-    }
-
-    img { display: block; max-width: 100%; }
-
-    a { text-decoration: none; color: inherit; }
-
-    /* ─── Utility ──────────────────────────────────────────────── */
-    .container {
-      width: min(1120px, 90%);
-      margin-inline: auto;
-    }
-
-    .section {
-      padding: 96px 0;
-    }
-
-    .section-label {
-      font-family: 'Inter', sans-serif;
-      font-size: .75rem;
-      font-weight: 600;
-      letter-spacing: .14em;
-      text-transform: uppercase;
-      color: var(--gold);
-      margin-bottom: 12px;
-    }
-
-    .section-title {
-      font-size: clamp(1.75rem, 4vw, 2.75rem);
-      margin-bottom: 16px;
-    }
-
-    .section-subtitle {
-      font-size: 1.05rem;
-      color: var(--text-light);
-      max-width: 560px;
-    }
-
-    .section-header {
-      margin-bottom: 56px;
-    }
-
-    .section-header.centered {
-      text-align: center;
-    }
-
-    .section-header.centered .section-subtitle {
-      margin-inline: auto;
-    }
-
-    /* ─── Buttons ──────────────────────────────────────────────── */
-    .btn {
-      display: inline-flex;
-      align-items: center;
-      gap: 8px;
-      padding: 14px 28px;
-      border-radius: 50px;
-      font-family: 'Inter', sans-serif;
-      font-size: .9rem;
-      font-weight: 600;
-      cursor: pointer;
-      border: none;
-      transition: all .25s ease;
-      white-space: nowrap;
-    }
-
-    .btn-primary {
-      background: var(--gold);
-      color: var(--white);
-    }
-
-    .btn-primary:hover {
-      background: var(--gold-dark);
-      transform: translateY(-2px);
-      box-shadow: 0 8px 24px rgba(200,160,103,.35);
-    }
-
-    .btn-outline {
-      background: transparent;
-      color: var(--brown);
-      border: 2px solid var(--gold);
-    }
-
-    .btn-outline:hover {
-      background: var(--gold);
-      color: var(--white);
-      transform: translateY(-2px);
-    }
-
-    .btn-ghost {
-      background: rgba(255,255,255,.15);
-      color: var(--white);
-      border: 2px solid rgba(255,255,255,.5);
-      backdrop-filter: blur(8px);
-    }
-
-    .btn-ghost:hover {
-      background: rgba(255,255,255,.25);
-      border-color: var(--white);
-      transform: translateY(-2px);
-    }
-
-    /* ─── Nav ──────────────────────────────────────────────────── */
-    nav {
+    /* ── SIDEBAR ── */
+    .sidebar {
       position: fixed;
-      top: 0; left: 0; right: 0;
-      z-index: 100;
-      padding: 18px 0;
-      transition: background .3s, box-shadow .3s;
+      top: 0; left: 0;
+      width: var(--sidebar-w);
+      height: 100vh;
+      border-right: 1px solid var(--border);
+      display: flex;
+      flex-direction: column;
+      align-items: center;
+      justify-content: space-between;
+      padding: 32px 0;
+      z-index: 200;
+      background: var(--bg);
     }
 
-    nav.scrolled {
-      background: rgba(253,248,243,.95);
+    .sidebar-icons { display: flex; flex-direction: column; gap: 20px; }
+
+    .sidebar-icon {
+      color: var(--text-secondary);
+      transition: color 0.2s;
+      cursor: pointer;
+      display: flex;
+      align-items: center;
+      justify-content: center;
+    }
+    .sidebar-icon:hover { color: var(--gold); }
+    .sidebar-icon svg { width: 16px; height: 16px; fill: none; stroke: currentColor; stroke-width: 1.5; }
+
+    .sidebar-contact {
+      font-size: 0.6rem;
+      letter-spacing: 0.12em;
+      text-transform: uppercase;
+      color: var(--text-secondary);
+      line-height: 1.8;
+      display: flex;
+      flex-direction: column;
+      gap: 28px;
+      align-items: center;
+    }
+    .sidebar-contact-email,
+    .sidebar-contact-phone {
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      transform: rotate(180deg);
+      transform-origin: center;
+    }
+    .sidebar-contact-email span,
+    .sidebar-contact-phone span {
+      writing-mode: vertical-rl;
+    }
+    .sidebar-contact-phone {
+      flex-direction: column;
+      gap: 10px;
+    }
+    .sidebar-contact-phone svg {
+      width: 13px;
+      height: 13px;
+      fill: currentColor;
+      stroke: none;
+      flex-shrink: 0;
+      transform: rotate(180deg);
+    }
+
+    /* ── NAV ── */
+    nav {
+      position: sticky;
+      top: 0;
+      left: var(--sidebar-w);
+      right: 0;
+      height: var(--nav-h);
+      margin-left: var(--sidebar-w);
+      background: rgba(27,29,34,0.95);
       backdrop-filter: blur(12px);
-      box-shadow: 0 2px 20px rgba(61,37,20,.08);
-    }
-
-    nav .container {
+      border-bottom: 1px solid var(--border);
       display: flex;
       align-items: center;
       justify-content: space-between;
+      padding: 0 48px;
+      z-index: 100;
     }
 
     .nav-logo {
-      font-family: 'Playfair Display', serif;
-      font-size: 1.35rem;
-      font-weight: 700;
-      color: var(--white);
-      transition: color .3s;
+      font-weight: 800;
+      font-size: 1.1rem;
+      letter-spacing: 0.02em;
+      color: var(--text-primary);
+      text-decoration: none;
     }
-
-    nav.scrolled .nav-logo { color: var(--brown); }
 
     .nav-links {
       display: flex;
-      gap: 32px;
+      align-items: center;
+      gap: 24px;
       list-style: none;
+      margin-left: auto;
     }
-
-    .nav-links a {
-      font-size: .875rem;
-      font-weight: 500;
-      color: rgba(255,255,255,.85);
-      transition: color .3s;
-    }
-
-    nav.scrolled .nav-links a { color: var(--text); }
-
-    .nav-links a:hover { color: var(--gold); }
-
-    nav.scrolled .nav-links a:hover { color: var(--gold); }
 
     .nav-cta {
-      background: var(--gold);
-      color: var(--white) !important;
-      padding: 8px 20px;
-      border-radius: 50px;
-    }
-
-    nav.scrolled .nav-cta { color: var(--white) !important; }
-
-    .nav-cta:hover { background: var(--gold-dark); opacity: 1; }
-
-    .hamburger {
-      display: none;
-      flex-direction: column;
-      gap: 5px;
-      cursor: pointer;
-      padding: 4px;
-    }
-
-    .hamburger span {
-      display: block;
-      width: 24px;
-      height: 2px;
-      background: var(--white);
+      color: var(--gold) !important;
+      border: 1px solid rgba(203,165,122,0.4);
       border-radius: 2px;
-      transition: all .3s;
+      padding: 8px 18px !important;
+      transition: background 0.2s, color 0.2s !important;
+    }
+    .nav-cta:hover {
+      background: var(--gold);
+      color: #1B1D22 !important;
+      border-color: var(--gold);
     }
 
-    nav.scrolled .hamburger span { background: var(--brown); }
+    .nav-links li { display: flex; align-items: center; }
 
-    /* ─── Hero ─────────────────────────────────────────────────── */
-    .hero {
-      min-height: 100vh;
-      background: linear-gradient(135deg, #3D2514 0%, #6B3E26 40%, #8B5A3A 70%, #A07840 100%);
-      display: flex;
-      align-items: center;
-      padding: 120px 0 80px;
-      position: relative;
-      overflow: hidden;
+    .nav-links a {
+      color: var(--text-secondary);
+      text-decoration: none;
+      font-size: 0.8rem;
+      font-weight: 500;
+      letter-spacing: 0.04em;
+      transition: color 0.2s;
+      padding: 0;
     }
+    .nav-links a:hover, .nav-links a.active { color: var(--text-primary); }
 
-    .hero-inner {
-      display: grid;
-      grid-template-columns: 1fr 1fr;
-      gap: 72px;
-      align-items: center;
-      width: 100%;
-    }
 
-    .hero::before {
-      content: '';
-      position: absolute;
-      inset: 0;
-      background: url("data:image/svg+xml,%3Csvg width='60' height='60' viewBox='0 0 60 60' xmlns='http://www.w3.org/2000/svg'%3E%3Cg fill='none' fill-rule='evenodd'%3E%3Cg fill='%23ffffff' fill-opacity='0.03'%3E%3Ccircle cx='30' cy='30' r='2'/%3E%3C/g%3E%3C/g%3E%3C/svg%3E");
-    }
+    /* ── MAIN CONTENT OFFSET ── */
+    .main-content { margin-left: var(--sidebar-w); }
 
-    .hero-content {
-      position: relative;
-      z-index: 1;
-    }
+    /* ── SECTION BASE ── */
+    section { position: relative; overflow: hidden; }
 
-    .hero-badge {
-      display: inline-flex;
-      align-items: center;
-      gap: 8px;
-      background: rgba(200,160,103,.2);
-      border: 1px solid rgba(200,160,103,.4);
-      border-radius: 50px;
-      padding: 6px 16px;
-      font-size: .8rem;
+    .section-label {
+      font-size: 0.65rem;
       font-weight: 600;
-      letter-spacing: .1em;
+      letter-spacing: 0.18em;
       text-transform: uppercase;
-      color: var(--champagne);
-      margin-bottom: 24px;
-    }
-
-    .hero-badge::before {
-      content: '✦';
-      font-size: .7rem;
       color: var(--gold);
-    }
-
-    .hero h1 {
-      font-size: clamp(2.5rem, 6vw, 4rem);
-      color: var(--white);
-      margin-bottom: 20px;
-      font-style: italic;
-    }
-
-    .hero h1 em {
-      font-style: normal;
-      color: var(--champagne);
-    }
-
-    .hero-sub {
-      font-size: 1.1rem;
-      color: rgba(255,255,255,.8);
-      margin-bottom: 20px;
-      max-width: 480px;
-    }
-
-    .hero-para {
-      font-size: .95rem;
-      color: rgba(255,255,255,.65);
-      max-width: 460px;
-      margin-bottom: 36px;
-      line-height: 1.8;
-    }
-
-    .hero-actions {
-      display: flex;
-      flex-wrap: wrap;
-      gap: 12px;
       margin-bottom: 16px;
     }
 
-    .hero-contact-btn {
-      margin-top: 8px;
+    .ghost-watermark {
+      position: absolute;
+      font-size: 13vw;
+      font-weight: 800;
+      color: rgba(255,255,255,0.025);
+      letter-spacing: -0.02em;
+      pointer-events: none;
+      user-select: none;
+      line-height: 1;
+      z-index: 0;
     }
 
-    .hero-image {
+    /* ── HERO ── */
+    #hero {
+      display: grid;
+      grid-template-columns: 1fr 1fr;
+      min-height: calc(100vh - var(--nav-h));
+    }
+
+    .hero-left {
+      display: flex;
+      flex-direction: column;
+      justify-content: center;
+      padding: 80px 64px 80px 56px;
       position: relative;
       z-index: 1;
     }
 
-    .hero-image-frame {
-      aspect-ratio: 4/5;
-      border-radius: var(--radius-lg);
-      border: 1px solid rgba(200,160,103,.25);
-      position: relative;
-      overflow: hidden;
-      box-shadow: var(--shadow-lg);
+    .hero-watermark {
+      top: 50%;
+      left: -10px;
+      font-size: clamp(9rem, 21vw, 17rem);
+      letter-spacing: -0.06em;
+      color: rgba(255,255,255,0.03);
+      transform: translateY(-50%);
     }
 
-    .hero-image-frame img {
-      width: 100%;
-      height: 100%;
-      object-fit: cover;
-      object-position: center;
+    .hero-headline {
+      display: flex;
+      flex-direction: column;
+      align-items: flex-start;
+      font-size: clamp(3.2rem, 6vw, 6.9rem);
+      font-weight: 300;
+      line-height: 0.94;
+      letter-spacing: -0.055em;
+      margin-bottom: 34px;
+      color: var(--text-primary);
+      max-width: 780px;
+      position: relative;
+      z-index: 1;
+    }
+
+    .hero-line {
       display: block;
     }
 
-    .hero-image-frame::before {
-      content: '';
-      position: absolute;
-      top: -50%;
-      left: -50%;
-      width: 200%;
-      height: 200%;
-      background: radial-gradient(circle at 60% 40%, rgba(200,160,103,.08) 0%, transparent 60%);
-      pointer-events: none;
+    .hero-line-light {
+      color: var(--text-primary);
+      font-weight: 300;
     }
 
-    .hero-float-tag {
-      position: absolute;
-      background: var(--white);
-      border-radius: 12px;
-      padding: 12px 16px;
-      box-shadow: var(--shadow-lg);
-      font-size: .8rem;
+    .hero-line-of {
+      margin-bottom: 10px;
+    }
+
+    .hero-line-gold {
+      color: var(--gold);
+      font-weight: 700;
+    }
+
+    .hero-sub {
+      font-size: clamp(1rem, 1.35vw, 1.22rem);
+      color: rgba(232,233,234,0.56);
+      max-width: 780px;
+      margin-bottom: 44px;
+      line-height: 1.85;
+      font-weight: 300;
+      position: relative;
+      z-index: 1;
+    }
+
+    .hero-ctas { display: flex; align-items: center; gap: 20px; flex-wrap: wrap; }
+
+    .btn-primary {
+      display: inline-flex;
+      align-items: center;
+      gap: 10px;
+      background: var(--gold);
+      color: #1B1D22;
+      padding: 14px 28px;
+      border-radius: 2px;
+      font-size: 0.8rem;
       font-weight: 600;
-      color: var(--brown);
+      letter-spacing: 0.06em;
+      text-transform: uppercase;
+      text-decoration: none;
+      cursor: pointer;
+      transition: opacity 0.2s, transform 0.2s;
+      border: none;
+    }
+    .btn-primary:hover { opacity: 0.88; transform: translateY(-1px); }
+
+    .btn-ghost {
+      display: inline-flex;
+      align-items: center;
+      gap: 10px;
+      background: transparent;
+      color: var(--text-primary);
+      padding: 13px 26px;
+      border-radius: 2px;
+      border: 1px solid var(--border);
+      font-size: 0.8rem;
+      font-weight: 500;
+      letter-spacing: 0.06em;
+      text-transform: uppercase;
+      text-decoration: none;
+      cursor: pointer;
+      transition: border-color 0.2s, color 0.2s;
+    }
+    .btn-ghost:hover { border-color: var(--gold); color: var(--gold); }
+
+    .btn-text {
+      color: var(--text-secondary);
+      font-size: 0.8rem;
+      font-weight: 500;
+      letter-spacing: 0.06em;
+      text-transform: uppercase;
+      text-decoration: none;
+      transition: color 0.2s;
+    }
+    .btn-text:hover { color: var(--gold); }
+
+    .hero-right {
+      display: flex;
+      align-items: stretch;
+      height: 100%;
+      padding: 0 24px 0 8px;
     }
 
-    .hero-float-tag.tag-1 {
-      top: 24px;
-      right: -20px;
+    .hero-single-img {
+      width: 100%;
+      height: 100%;
+      border-radius: 2px;
+      overflow: hidden;
     }
 
-    .hero-float-tag.tag-2 {
-      bottom: 64px;
-      left: -24px;
+    .hero-single-img img {
+      width: 100%;
+      height: 100%;
+      object-fit: cover;
+      filter: brightness(0.88) contrast(1.1);
+      display: block;
     }
 
-    .tag-icon { font-size: 1.1rem; }
+    /* ── OCCASIONS ── */
+    #occasions {
+      padding: 72px 56px 100px;
+      border-top: 1px solid var(--border);
+    }
 
-    /* ─── Occasions ────────────────────────────────────────────── */
-    .occasions {
-      background: var(--white);
+    .occasions-watermark { top: 20px; right: -30px; }
+
+    .occasions-header { margin-bottom: 56px; position: relative; z-index: 1; }
+    .occasions-header h2 {
+      font-size: clamp(1.8rem, 3vw, 2.8rem);
+      font-weight: 400;
+      letter-spacing: -0.02em;
     }
 
     .occasions-grid {
       display: grid;
       grid-template-columns: repeat(3, 1fr);
-      gap: 24px;
+      gap: 16px;
+      position: relative;
+      z-index: 1;
     }
 
     .occasion-card {
-      border-radius: var(--radius);
-      padding: 32px 28px;
-      background: var(--cream);
-      border: 1px solid rgba(200,160,103,.15);
-      transition: all .3s ease;
-      cursor: default;
+      background: var(--card);
+      border-radius: 4px;
+      overflow: hidden;
+      border: 1px solid var(--border);
+      border-left: 2px solid transparent;
+      transition: border-color 0.2s, transform 0.25s;
+      cursor: pointer;
     }
-
     .occasion-card:hover {
-      transform: translateY(-6px);
-      box-shadow: var(--shadow-lg);
-      border-color: rgba(200,160,103,.35);
+      border-left-color: var(--gold);
+      transform: translateY(-4px);
     }
 
-    .occasion-icon {
-      font-size: 2rem;
-      margin-bottom: 16px;
-      display: block;
+    .occasion-card-img {
+      height: 200px;
+      overflow: hidden;
+      position: relative;
+    }
+    .occasion-card-img::after {
+      content: '';
+      position: absolute;
+      inset: 0;
+      background: linear-gradient(to bottom, transparent 40%, rgba(27,29,34,0.5));
+    }
+    .occasion-card-img img {
+      width: 100%;
+      height: 100%;
+      object-fit: cover;
+      transition: transform 0.4s;
+      filter: brightness(0.9);
+    }
+    .occasion-card:hover .occasion-card-img img { transform: scale(1.05); filter: brightness(1); }
+
+    .occasion-card-body { padding: 20px 22px 24px; }
+    .occasion-card-name {
+      font-style: italic;
+      font-size: 1.1rem;
+      font-weight: 400;
+      color: var(--text-primary);
+      margin-bottom: 6px;
+    }
+    .occasion-card-desc {
+      font-size: 0.78rem;
+      color: var(--text-secondary);
+      line-height: 1.6;
     }
 
-    .occasion-card h3 {
-      font-size: 1.15rem;
-      margin-bottom: 8px;
+    /* ── COLLECTIONS ── */
+    #collections {
+      padding: 100px 56px;
+      background: rgba(0,0,0,0.15);
     }
 
-    .occasion-card p {
-      font-size: .875rem;
-      color: var(--text-light);
-      line-height: 1.65;
-    }
+    .collections-watermark { top: 20px; left: -20px; }
 
-    /* ─── Collections ──────────────────────────────────────────── */
-    .collections {
-      background: var(--blush-light);
+    .collections-header { margin-bottom: 56px; position: relative; z-index: 1; }
+    .collections-header h2 {
+      font-size: clamp(1.8rem, 3vw, 2.8rem);
+      font-weight: 400;
+      letter-spacing: -0.02em;
     }
 
     .collections-grid {
       display: grid;
-      grid-template-columns: repeat(2, 1fr);
-      gap: 28px;
+      grid-template-columns: repeat(4, 1fr);
+      gap: 16px;
+      position: relative;
+      z-index: 1;
     }
 
     .collection-card {
-      border-radius: var(--radius-lg);
+      background: var(--card);
+      border-radius: 4px;
       overflow: hidden;
-      background: var(--white);
-      box-shadow: var(--shadow);
-      transition: all .3s ease;
+      cursor: pointer;
+      position: relative;
+      transition: transform 0.3s;
+    }
+    .collection-card:hover { transform: translateY(-4px); }
+
+    .collection-badge {
+      position: absolute;
+      top: 16px; right: 16px;
+      background: rgba(203,165,122,0.12);
+      border: 1px solid rgba(203,165,122,0.3);
+      color: var(--gold);
+      font-size: 0.6rem;
+      font-weight: 600;
+      letter-spacing: 0.12em;
+      text-transform: uppercase;
+      padding: 4px 10px;
+      border-radius: 2px;
+      z-index: 1;
     }
 
-    .collection-card:hover {
-      transform: translateY(-8px);
-      box-shadow: var(--shadow-lg);
-    }
-
-    .collection-image {
-      aspect-ratio: 16/9;
+    .collection-img {
+      aspect-ratio: 3 / 4;
       overflow: hidden;
       position: relative;
     }
-
-    .collection-image img {
+    .collection-img img {
       width: 100%;
       height: 100%;
       object-fit: cover;
-      object-position: center;
-      display: block;
-      transition: transform .4s ease;
+      filter: brightness(0.88) contrast(1.08);
+      transition: transform 0.4s, filter 0.4s;
     }
-
-    .collection-card:hover .collection-image img {
+    .collection-card:hover .collection-img img {
       transform: scale(1.05);
+      filter: brightness(1) contrast(1.05);
     }
 
     .collection-body {
-      padding: 28px;
+      padding: 20px 22px 24px;
     }
-
-    .collection-tag {
-      display: inline-block;
-      font-size: .72rem;
+    .collection-name {
+      font-size: 1rem;
       font-weight: 600;
-      letter-spacing: .1em;
-      text-transform: uppercase;
+      color: var(--text-primary);
+      margin-bottom: 6px;
+    }
+    .collection-desc {
+      font-size: 0.75rem;
+      color: var(--text-secondary);
+      margin-bottom: 16px;
+      line-height: 1.6;
+    }
+    .collection-link {
+      display: inline-flex;
+      align-items: center;
+      gap: 6px;
       color: var(--gold);
-      margin-bottom: 8px;
+      font-size: 0.72rem;
+      font-weight: 600;
+      letter-spacing: 0.08em;
+      text-transform: uppercase;
+      text-decoration: none;
+      transition: gap 0.2s;
+    }
+    .collection-link:hover { gap: 10px; }
+    .collection-link svg { width: 12px; height: 12px; fill: none; stroke: currentColor; stroke-width: 2; }
+
+    /* ── CORPORATE ── */
+    #corporate {
+      display: grid;
+      grid-template-columns: 55fr 45fr;
+      min-height: 80vh;
     }
 
-    .collection-body h3 {
-      font-size: 1.2rem;
-      margin-bottom: 10px;
-    }
-
-    .collection-body p {
-      font-size: .875rem;
-      color: var(--text-light);
-      line-height: 1.7;
-    }
-
-    /* ─── Corporate ────────────────────────────────────────────── */
-    .corporate {
-      background: linear-gradient(135deg, #3D2514 0%, #6B3E26 60%, #8B5A3A 100%);
-      color: var(--white);
+    .corporate-left {
+      display: flex;
+      flex-direction: column;
+      justify-content: center;
+      padding: 80px 64px 80px 56px;
       position: relative;
+      z-index: 1;
+    }
+
+    .corporate-watermark { top: 40%; left: -30px; transform: translateY(-50%); }
+
+    .corporate-headline {
+      font-size: clamp(2rem, 3vw, 3.2rem);
+      font-weight: 400;
+      letter-spacing: -0.02em;
+      line-height: 1.15;
+      margin-bottom: 32px;
+    }
+
+    .corporate-points {
+      list-style: none;
+      margin-bottom: 40px;
+      display: grid;
+      grid-template-columns: repeat(2, minmax(0, 1fr));
+      column-gap: 28px;
+      row-gap: 16px;
+      width: 100%;
+      max-width: 520px;
+    }
+    .corporate-points li {
+      display: flex;
+      align-items: flex-start;
+      gap: 14px;
+      font-size: 0.88rem;
+      color: var(--text-secondary);
+      line-height: 1.6;
+    }
+    .corporate-points li::before {
+      content: '—';
+      color: var(--gold);
+      flex-shrink: 0;
+      margin-top: 2px;
+    }
+
+    .corporate-right {
+      display: flex;
+      align-items: center;
+      padding: 40px 48px 40px 16px;
+    }
+
+    .corp-single-img {
+      width: 100%;
+      height: 480px;
+      border-radius: 4px;
       overflow: hidden;
     }
 
-    .corporate::before {
-      content: '';
-      position: absolute;
-      top: -40%;
-      right: -10%;
-      width: 600px;
-      height: 600px;
-      border-radius: 50%;
-      background: radial-gradient(circle, rgba(200,160,103,.12) 0%, transparent 70%);
-      pointer-events: none;
+    .corp-single-img img {
+      width: 100%;
+      height: 100%;
+      object-fit: cover;
+      filter: brightness(0.85) contrast(1.1);
+      display: block;
+      transition: filter 0.3s;
+    }
+    .corp-single-img:hover img { filter: brightness(1) contrast(1.05); }
+
+    /* ── WHY US ── */
+    #why-us {
+      padding: 100px 56px;
+      background: rgba(0,0,0,0.12);
     }
 
-    .corporate .container {
+    .why-watermark { top: 20px; right: -40px; }
+
+    .why-header { margin-bottom: 48px; position: relative; z-index: 1; }
+    .why-header h2 {
+      font-size: clamp(1.8rem, 3vw, 2.8rem);
+      font-weight: 400;
+      letter-spacing: -0.02em;
+    }
+
+    hr.why-divider {
+      border: none;
+      border-top: 1px solid var(--border);
+      margin: 0 0 56px;
       position: relative;
-      display: grid;
-      grid-template-columns: 1fr 1fr;
-      gap: 80px;
-      align-items: center;
-    }
-
-    .corporate .section-label { color: var(--champagne); }
-
-    .corporate .section-title { color: var(--white); }
-
-    .corporate-desc {
-      font-size: 1rem;
-      color: rgba(255,255,255,.75);
-      margin-bottom: 32px;
-      line-height: 1.8;
-    }
-
-    .corporate-perks {
-      display: grid;
-      grid-template-columns: 1fr 1fr;
-      gap: 20px;
-    }
-
-    .perk {
-      display: flex;
-      align-items: flex-start;
-      gap: 12px;
-    }
-
-    .perk-icon {
-      width: 36px;
-      height: 36px;
-      border-radius: 8px;
-      background: rgba(200,160,103,.2);
-      border: 1px solid rgba(200,160,103,.3);
-      display: flex;
-      align-items: center;
-      justify-content: center;
-      font-size: 1rem;
-      flex-shrink: 0;
-    }
-
-    .perk-text h4 {
-      font-family: 'Inter', sans-serif;
-      font-size: .85rem;
-      font-weight: 600;
-      color: var(--champagne);
-      margin-bottom: 2px;
-    }
-
-    .perk-text p {
-      font-size: .8rem;
-      color: rgba(255,255,255,.6);
-    }
-
-    .corporate-visual {
-      display: flex;
-      flex-direction: column;
-      gap: 20px;
-    }
-
-    .corporate-stat-card {
-      background: rgba(255,255,255,.06);
-      border: 1px solid rgba(200,160,103,.2);
-      border-radius: var(--radius);
-      padding: 24px 28px;
-      backdrop-filter: blur(8px);
-    }
-
-    .corporate-stat-card .stat-num {
-      font-family: 'Playfair Display', serif;
-      font-size: 2.5rem;
-      font-weight: 700;
-      color: var(--champagne);
-      line-height: 1;
-      margin-bottom: 6px;
-    }
-
-    .corporate-stat-card .stat-label {
-      font-size: .85rem;
-      color: rgba(255,255,255,.6);
-    }
-
-    /* ─── Why Us ───────────────────────────────────────────────── */
-    .why-us {
-      background: var(--white);
+      z-index: 1;
     }
 
     .why-grid {
       display: grid;
       grid-template-columns: repeat(4, 1fr);
-      gap: 32px;
+      gap: 0;
+      position: relative;
+      z-index: 1;
     }
 
-    .why-card {
-      text-align: center;
-      padding: 40px 24px;
-      border-radius: var(--radius);
-      background: var(--cream);
-      border: 1px solid rgba(200,160,103,.12);
-      transition: all .3s;
+    .why-item {
+      padding: 32px 36px 32px 0;
+      border-right: 1px solid var(--border);
     }
+    .why-item:last-child { border-right: none; padding-right: 0; }
+    .why-item:not(:first-child) { padding-left: 36px; }
 
-    .why-card:hover {
-      transform: translateY(-6px);
-      box-shadow: var(--shadow);
-      border-color: rgba(200,160,103,.3);
+    .why-icon {
+      width: 40px; height: 40px;
+      color: var(--gold);
+      margin-bottom: 20px;
+      transition: filter 0.2s;
     }
+    .why-item:hover .why-icon { filter: drop-shadow(0 0 8px rgba(203,165,122,0.6)); }
+    .why-icon svg { width: 100%; height: 100%; fill: none; stroke: currentColor; stroke-width: 1.4; }
 
-    .why-icon-wrap {
-      width: 64px;
-      height: 64px;
-      border-radius: 16px;
-      background: linear-gradient(135deg, var(--champagne), var(--blush));
-      display: flex;
-      align-items: center;
-      justify-content: center;
-      font-size: 1.6rem;
-      margin: 0 auto 20px;
-      box-shadow: 0 4px 16px rgba(200,160,103,.2);
-    }
-
-    .why-card h3 {
-      font-size: 1rem;
+    .why-title {
+      font-size: 0.92rem;
+      font-weight: 600;
+      color: var(--text-primary);
       margin-bottom: 10px;
+      letter-spacing: 0.01em;
+    }
+    .why-desc { font-size: 0.78rem; color: var(--text-secondary); line-height: 1.65; }
+
+    /* ── HOW IT WORKS ── */
+    #how-it-works { padding: 100px 56px; }
+
+    .how-watermark { top: 20px; left: -20px; }
+
+    .how-header { margin-bottom: 72px; position: relative; z-index: 1; }
+    .how-header h2 {
+      font-size: clamp(1.8rem, 3vw, 2.8rem);
+      font-weight: 400;
+      letter-spacing: -0.02em;
     }
 
-    .why-card p {
-      font-size: .85rem;
-      color: var(--text-light);
-      line-height: 1.65;
-    }
-
-    /* ─── How It Works ─────────────────────────────────────────── */
-    .how-it-works {
-      background: var(--blush-light);
-    }
-
-    .steps-row {
+    .how-steps {
       display: grid;
-      grid-template-columns: 1fr 80px 1fr 80px 1fr;
-      align-items: center;
+      grid-template-columns: repeat(3, 1fr);
+      position: relative;
+      z-index: 1;
       gap: 0;
     }
 
-    .step {
-      text-align: center;
-      padding: 40px 24px;
-      background: var(--white);
-      border-radius: var(--radius-lg);
-      box-shadow: var(--shadow);
+    .how-divider-line {
+      border: none;
+      border-top: 1px solid var(--gold);
+      opacity: 0.35;
+      margin: 40px 0 0;
+    }
+
+    .how-step {
+      padding: 0 40px 0 0;
       position: relative;
+      z-index: 1;
+    }
+    .how-step:last-child { padding-right: 0; }
+
+    .how-step-num {
+      font-size: 7vw;
+      font-weight: 800;
+      color: rgba(255,255,255,0.04);
+      line-height: 1;
+      margin-bottom: -16px;
+      letter-spacing: -0.04em;
     }
 
-    .step-num {
-      display: inline-flex;
-      align-items: center;
-      justify-content: center;
-      width: 40px;
-      height: 40px;
-      border-radius: 50%;
-      background: var(--gold);
-      color: var(--white);
-      font-family: 'Playfair Display', serif;
-      font-size: 1.1rem;
-      font-weight: 700;
-      margin-bottom: 20px;
-    }
-
-    .step-icon {
-      font-size: 2.5rem;
-      margin-bottom: 16px;
-      display: block;
-    }
-
-    .step h3 {
-      font-size: 1.05rem;
-      margin-bottom: 8px;
-    }
-
-    .step p {
-      font-size: .85rem;
-      color: var(--text-light);
-      line-height: 1.65;
-    }
-
-    .step-connector {
-      display: flex;
-      align-items: center;
-      justify-content: center;
+    .how-step-icon {
+      width: 36px; height: 36px;
       color: var(--gold);
-      font-size: 1.5rem;
+      margin-bottom: 16px;
+    }
+    .how-step-icon svg { width: 100%; height: 100%; fill: none; stroke: currentColor; stroke-width: 1.5; }
+
+    .how-step-title {
+      font-size: 1rem;
+      font-weight: 600;
+      color: var(--text-primary);
+      margin-bottom: 10px;
+    }
+    .how-step-desc { font-size: 0.78rem; color: var(--text-secondary); line-height: 1.65; max-width: 260px; }
+
+    /* ── TESTIMONIALS ── */
+    #testimonials {
+      padding: 100px 56px;
+      background: rgba(0,0,0,0.15);
     }
 
-    /* ─── Testimonials ─────────────────────────────────────────── */
-    .testimonials {
-      background: var(--white);
+    .testimonials-watermark { top: 20px; right: -30px; }
+
+    .testimonials-header { margin-bottom: 56px; position: relative; z-index: 1; }
+    .testimonials-header h2 {
+      font-size: clamp(1.8rem, 3vw, 2.8rem);
+      font-weight: 400;
+      letter-spacing: -0.02em;
     }
 
     .testimonials-grid {
       display: grid;
       grid-template-columns: repeat(3, 1fr);
-      gap: 28px;
+      gap: 16px;
+      position: relative;
+      z-index: 1;
     }
 
     .testimonial-card {
-      background: var(--cream);
-      border-radius: var(--radius-lg);
-      padding: 36px 32px;
-      border: 1px solid rgba(200,160,103,.15);
-      position: relative;
-      transition: all .3s;
+      background: var(--card);
+      border-radius: 4px;
+      padding: 32px 28px 28px;
+      border-top: 1px solid rgba(203,165,122,0.25);
+      display: flex;
+      flex-direction: column;
     }
 
-    .testimonial-card:hover {
-      transform: translateY(-4px);
-      box-shadow: var(--shadow-lg);
-    }
-
-    .testimonial-card::before {
-      content: '\201C';
-      position: absolute;
-      top: 16px;
-      left: 28px;
-      font-family: 'Playfair Display', serif;
-      font-size: 5rem;
-      color: var(--gold);
-      opacity: .2;
+    .testimonial-quote-mark {
+      font-size: 4rem;
       line-height: 1;
+      color: var(--gold);
+      font-family: Georgia, serif;
+      margin-bottom: 8px;
+      opacity: 0.7;
     }
 
-    .stars {
-      color: var(--gold);
-      font-size: 1rem;
+    .testimonial-stars {
+      display: flex;
+      gap: 4px;
       margin-bottom: 16px;
-      letter-spacing: 2px;
+    }
+    .testimonial-stars svg {
+      width: 13px; height: 13px;
+      fill: var(--gold);
+      stroke: none;
     }
 
     .testimonial-text {
-      font-size: .925rem;
-      color: var(--text);
-      line-height: 1.8;
+      font-size: 0.85rem;
+      color: var(--text-secondary);
+      line-height: 1.75;
+      margin-bottom: 20px;
       font-style: italic;
-      margin-bottom: 24px;
-      position: relative;
+      flex: 1;
     }
 
-    .testimonial-author {
-      display: flex;
-      align-items: center;
-      gap: 12px;
-    }
-
-    .author-avatar {
-      width: 44px;
-      height: 44px;
-      border-radius: 50%;
-      background: linear-gradient(135deg, var(--champagne), var(--blush));
-      display: flex;
-      align-items: center;
-      justify-content: center;
-      font-family: 'Playfair Display', serif;
+    .testimonial-attribution {
+      font-size: 0.75rem;
+      color: var(--gold);
       font-weight: 600;
-      color: var(--brown);
-      font-size: 1rem;
-      flex-shrink: 0;
+      letter-spacing: 0.06em;
+      text-transform: uppercase;
+      margin-top: auto;
+      padding-top: 16px;
+      border-top: 1px solid var(--border);
     }
 
-    .author-name {
-      font-weight: 600;
-      font-size: .9rem;
-      color: var(--brown);
-    }
-
-    .author-label {
-      font-size: .78rem;
-      color: var(--text-light);
-    }
-
-    /* ─── Contact ──────────────────────────────────────────────── */
-    .contact {
-      background: var(--blush-light);
-    }
-
-    .contact-inner {
+    /* ── CONTACT ── */
+    #contact {
       display: grid;
       grid-template-columns: 1fr 1fr;
-      gap: 80px;
-      align-items: center;
+      min-height: 80vh;
     }
 
-    .contact-info {
+    .contact-left {
       display: flex;
       flex-direction: column;
-      gap: 24px;
+      justify-content: center;
+      padding: 80px 56px;
+      position: relative;
+      z-index: 1;
     }
+
+    .contact-watermark { top: 40%; left: -20px; transform: translateY(-50%); }
+
+    .contact-headline {
+      font-size: clamp(1.8rem, 2.8vw, 3rem);
+      font-weight: 400;
+      letter-spacing: -0.02em;
+      line-height: 1.2;
+      margin-bottom: 36px;
+    }
+
+    .contact-details { display: flex; flex-direction: column; gap: 14px; margin-bottom: 0; }
 
     .contact-item {
       display: flex;
-      align-items: flex-start;
-      gap: 16px;
-      padding: 20px 24px;
-      background: var(--white);
-      border-radius: var(--radius);
-      box-shadow: var(--shadow);
-      border: 1px solid rgba(200,160,103,.1);
-    }
-
-    .contact-item-icon {
-      width: 44px;
-      height: 44px;
-      border-radius: 12px;
-      background: linear-gradient(135deg, var(--champagne), var(--blush));
-      display: flex;
       align-items: center;
-      justify-content: center;
-      font-size: 1.2rem;
-      flex-shrink: 0;
-    }
-
-    .contact-item-body h4 {
-      font-family: 'Inter', sans-serif;
-      font-size: .8rem;
-      font-weight: 600;
-      letter-spacing: .08em;
-      text-transform: uppercase;
-      color: var(--gold);
-      margin-bottom: 4px;
-    }
-
-    .contact-item-body p, .contact-item-body a {
-      font-size: .95rem;
-      color: var(--text);
-      font-weight: 500;
-    }
-
-    .contact-item-body a:hover { color: var(--gold); }
-
-    .whatsapp-section {
-      background: var(--white);
-      border-radius: var(--radius-lg);
-      padding: 40px;
-      box-shadow: var(--shadow-lg);
-      border: 1px solid rgba(200,160,103,.15);
-      text-align: center;
-    }
-
-    .whatsapp-section h3 {
-      margin-bottom: 8px;
-      font-size: 1.3rem;
-    }
-
-    .whatsapp-section p {
-      color: var(--text-light);
-      font-size: .9rem;
-      margin-bottom: 24px;
-    }
-
-    .qr-placeholder {
-      width: 180px;
-      height: 180px;
-      border-radius: 16px;
-      background: var(--cream);
-      border: 2px dashed rgba(200,160,103,.4);
-      display: flex;
-      flex-direction: column;
-      align-items: center;
-      justify-content: center;
-      gap: 8px;
-      margin: 0 auto 20px;
-      color: var(--text-light);
-      font-size: .8rem;
-    }
-
-    .qr-placeholder span:first-child { font-size: 2.5rem; }
-
-    .wa-btn {
-      display: inline-flex;
-      align-items: center;
-      gap: 8px;
-      background: #25D366;
-      color: var(--white);
-      padding: 12px 28px;
-      border-radius: 50px;
-      font-weight: 600;
-      font-size: .9rem;
-      transition: all .25s;
-    }
-
-    .wa-btn:hover {
-      background: #128C7E;
-      transform: translateY(-2px);
-      box-shadow: 0 8px 24px rgba(37,211,102,.3);
-    }
-
-    /* ─── Footer ───────────────────────────────────────────────── */
-    footer {
-      background: var(--brown);
-      color: rgba(255,255,255,.7);
-      padding: 56px 0 32px;
-    }
-
-    .footer-top {
-      display: grid;
-      grid-template-columns: 1.5fr 1fr 1fr;
-      gap: 56px;
-      margin-bottom: 48px;
-      padding-bottom: 48px;
-      border-bottom: 1px solid rgba(255,255,255,.1);
-    }
-
-    .footer-brand-name {
-      font-family: 'Playfair Display', serif;
-      font-size: 1.5rem;
-      color: var(--white);
-      margin-bottom: 12px;
-    }
-
-    .footer-tagline {
-      font-size: .875rem;
-      line-height: 1.7;
-      color: rgba(255,255,255,.6);
-      margin-bottom: 24px;
-      font-style: italic;
-    }
-
-    .social-icons {
-      display: flex;
       gap: 12px;
+      font-size: 0.85rem;
+      color: var(--text-secondary);
+    }
+    .contact-item svg { width: 16px; height: 16px; fill: none; stroke: var(--gold); stroke-width: 1.5; flex-shrink: 0; }
+
+    .whatsapp-btn {
+      color: var(--gold);
+      text-decoration: none;
+      width: fit-content;
+      margin-top: 2px;
+      transition: color 0.2s, transform 0.2s;
+    }
+    .whatsapp-btn:hover {
+      color: var(--text-primary);
+      transform: translateX(4px);
+    }
+    .whatsapp-btn svg {
+      width: 18px;
+      height: 18px;
+      fill: currentColor;
+      stroke: none;
     }
 
-    .social-icon {
-      width: 40px;
-      height: 40px;
-      border-radius: 10px;
-      background: rgba(255,255,255,.08);
-      border: 1px solid rgba(255,255,255,.12);
-      display: flex;
-      align-items: center;
-      justify-content: center;
-      font-size: 1.1rem;
-      transition: all .25s;
-      color: rgba(255,255,255,.7);
+    .contact-barcode {
+      margin-top: 10px;
+    }
+    .contact-barcode img {
+      display: block;
+      width: min(148px, 100%);
+      height: auto;
+      border-radius: 2px;
+      border: none;
+      background: transparent;
+      padding: 0;
+      box-shadow: 0 10px 24px rgba(0,0,0,0.18);
     }
 
-    .social-icon:hover {
-      background: var(--gold);
-      border-color: var(--gold);
-      color: var(--white);
-      transform: translateY(-3px);
-    }
-
-    .footer-col h4 {
-      font-family: 'Inter', sans-serif;
-      font-size: .8rem;
-      font-weight: 600;
-      letter-spacing: .1em;
-      text-transform: uppercase;
-      color: var(--champagne);
-      margin-bottom: 20px;
-    }
-
-    .footer-col ul {
-      list-style: none;
+    .contact-right {
       display: flex;
       flex-direction: column;
-      gap: 10px;
+      justify-content: center;
+      padding: 80px 64px 80px 40px;
+      background: rgba(0,0,0,0.1);
     }
 
-    .footer-col ul a {
-      font-size: .875rem;
-      color: rgba(255,255,255,.6);
-      transition: color .2s;
+    .contact-form { display: flex; flex-direction: column; gap: 16px; }
+
+    .form-group { display: flex; flex-direction: column; gap: 6px; }
+    .form-label { font-size: 0.7rem; letter-spacing: 0.1em; text-transform: uppercase; color: var(--text-secondary); }
+
+    .form-input,
+    .form-select,
+    .form-textarea {
+      background: var(--card);
+      border: 1px solid var(--border);
+      border-radius: 2px;
+      color: var(--text-primary);
+      font-family: 'Plus Jakarta Sans', sans-serif;
+      font-size: 0.85rem;
+      padding: 12px 14px;
+      outline: none;
+      transition: border-color 0.2s, box-shadow 0.2s;
+      width: 100%;
     }
+    .form-input:focus,
+    .form-select:focus,
+    .form-textarea:focus {
+      border-color: var(--gold);
+      box-shadow: 0 0 0 3px rgba(203,165,122,0.08);
+    }
+    .form-input::placeholder, .form-textarea::placeholder { color: var(--text-secondary); opacity: 0.5; }
+    .form-select { cursor: pointer; appearance: none; background-image: url("data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' width='12' height='12' viewBox='0 0 24 24' fill='none' stroke='%238E929A' stroke-width='2'%3E%3Cpolyline points='6 9 12 15 18 9'%3E%3C/polyline%3E%3C/svg%3E"); background-repeat: no-repeat; background-position: right 14px center; padding-right: 36px; }
+    .form-select option { background: var(--card); color: var(--text-primary); }
+    .form-textarea { resize: vertical; min-height: 120px; }
 
-    .footer-col ul a:hover { color: var(--gold); }
+    .btn-submit {
+      background: var(--gold);
+      color: #1B1D22;
+      border: none;
+      border-radius: 2px;
+      padding: 14px 28px;
+      font-family: 'Plus Jakarta Sans', sans-serif;
+      font-size: 0.8rem;
+      font-weight: 700;
+      letter-spacing: 0.08em;
+      text-transform: uppercase;
+      cursor: pointer;
+      transition: opacity 0.2s, transform 0.2s;
+      align-self: flex-start;
+    }
+    .btn-submit:hover { opacity: 0.88; transform: translateY(-1px); }
 
-    .footer-bottom {
+    /* ── FOOTER ── */
+    footer {
+      height: 80px;
+      border-top: 1px solid var(--border);
       display: flex;
       align-items: center;
       justify-content: space-between;
-      font-size: .8rem;
+      padding: 0 56px;
     }
 
-    .footer-bottom p { color: rgba(255,255,255,.4); }
+    .footer-logo { font-weight: 800; font-size: 0.9rem; letter-spacing: 0.02em; }
+    .footer-tag { font-size: 0.7rem; color: var(--text-secondary); letter-spacing: 0.02em; }
+    .footer-icons { display: flex; gap: 16px; }
+    .footer-icon { color: var(--text-secondary); transition: color 0.2s; cursor: pointer; display: flex; }
+    .footer-icon:hover { color: var(--gold); }
+    .footer-icon svg { width: 16px; height: 16px; fill: none; stroke: currentColor; stroke-width: 1.5; }
 
-    .footer-gold { color: var(--gold); }
-
-    /* ─── Scroll Animations ────────────────────────────────────── */
-    .reveal {
-      opacity: 0;
-      transform: translateY(32px);
-      transition: opacity .7s ease, transform .7s ease;
-    }
-
-    .reveal.visible {
-      opacity: 1;
-      transform: none;
-    }
-
-    .reveal-delay-1 { transition-delay: .1s; }
-    .reveal-delay-2 { transition-delay: .2s; }
-    .reveal-delay-3 { transition-delay: .3s; }
-    .reveal-delay-4 { transition-delay: .4s; }
-
-    /* ─── Mobile Nav ───────────────────────────────────────────── */
-    .mobile-nav {
-      display: none;
+    .scroll-top {
       position: fixed;
-      top: 0; left: 0; right: 0; bottom: 0;
-      background: var(--brown);
-      z-index: 99;
-      flex-direction: column;
+      right: 28px;
+      bottom: 28px;
+      width: 48px;
+      height: 48px;
+      border-radius: 999px;
+      border: 1px solid rgba(203,165,122,0.4);
+      background: rgba(37,40,48,0.92);
+      color: var(--gold);
+      display: flex;
       align-items: center;
       justify-content: center;
-      gap: 32px;
+      text-decoration: none;
+      box-shadow: 0 10px 30px rgba(0,0,0,0.24);
+      opacity: 0;
+      pointer-events: none;
+      transform: translateY(16px);
+      transition: opacity 0.2s, transform 0.2s, border-color 0.2s, color 0.2s;
+      z-index: 150;
+    }
+    .scroll-top.visible {
+      opacity: 1;
+      pointer-events: auto;
+      transform: translateY(0);
+    }
+    .scroll-top:hover {
+      color: var(--text-primary);
+      border-color: var(--gold);
+      transform: translateY(-2px);
+    }
+    .scroll-top svg {
+      width: 18px;
+      height: 18px;
+      fill: none;
+      stroke: currentColor;
+      stroke-width: 1.7;
     }
 
-    .mobile-nav.open { display: flex; }
-
-    .mobile-nav a {
-      font-family: 'Playfair Display', serif;
-      font-size: 1.5rem;
-      color: var(--white);
-      transition: color .2s;
+    /* ── SCROLL ANIMATIONS ── */
+    .fade-up {
+      opacity: 0;
+      transform: translateY(28px);
+      transition: opacity 0.65s ease, transform 0.65s ease;
     }
-
-    .mobile-nav a:hover { color: var(--gold); }
-
-    .mobile-nav-close {
-      position: absolute;
-      top: 24px;
-      right: 24px;
-      background: none;
-      border: none;
-      color: var(--white);
-      font-size: 1.5rem;
-      cursor: pointer;
+    .fade-up.visible {
+      opacity: 1;
+      transform: translateY(0);
     }
+    .fade-up:nth-child(2) { transition-delay: 0.08s; }
+    .fade-up:nth-child(3) { transition-delay: 0.16s; }
+    .fade-up:nth-child(4) { transition-delay: 0.24s; }
+    .fade-up:nth-child(5) { transition-delay: 0.32s; }
+    .fade-up:nth-child(6) { transition-delay: 0.4s; }
 
-    /* ─── Responsive ───────────────────────────────────────────── */
-    @media (max-width: 1024px) {
-      .hero { padding: 100px 0 60px; }
-
-      .hero-inner {
-        grid-template-columns: 1fr;
-        text-align: center;
-      }
-
-      .hero-sub, .hero-para { margin-inline: auto; }
-
-      .hero-actions { justify-content: center; }
-
-      .hero-image { display: none; }
-
-      .occasions-grid { grid-template-columns: repeat(2, 1fr); }
-
+    /* ── RESPONSIVE ── */
+    @media (max-width: 1200px) {
+      .collections-grid { grid-template-columns: repeat(2, 1fr); }
+    }
+    @media (max-width: 1100px) {
       .why-grid { grid-template-columns: repeat(2, 1fr); }
-
-      .corporate .container {
-        grid-template-columns: 1fr;
-        gap: 48px;
-      }
-
-      .corporate-visual { flex-direction: row; }
-
-      .corporate-stat-card { flex: 1; }
-
-      .steps-row {
-        grid-template-columns: 1fr;
-        gap: 20px;
-      }
-
-      .step-connector { transform: rotate(90deg); }
-
-      .testimonials-grid { grid-template-columns: 1fr; max-width: 560px; margin-inline: auto; }
-
-      .contact-inner { grid-template-columns: 1fr; gap: 40px; }
-
-      .footer-top { grid-template-columns: 1fr 1fr; }
-
+      .why-item:nth-child(2) { border-right: none; }
+      .why-item:nth-child(3) { border-right: 1px solid var(--border); border-top: 1px solid var(--border); padding-top: 32px; }
+      .why-item:nth-child(4) { border-right: none; border-top: 1px solid var(--border); padding-top: 32px; }
+      .how-steps { grid-template-columns: 1fr; gap: 48px; }
+      .how-connector { display: none; }
+    }
+    @media (max-width: 900px) {
+      .sidebar { display: none; }
+      .main-content { margin-left: 0; }
+      nav { margin-left: 0; }
       .nav-links { display: none; }
-
-      .hamburger { display: flex; }
+      #hero { grid-template-columns: 1fr; }
+      .hero-right { display: none; }
+      .hero-left { padding: 64px 32px; min-height: calc(100vh - var(--nav-h)); }
+      .hero-watermark { left: 0; font-size: 30vw; }
+      .hero-headline { margin-bottom: 28px; }
+      .hero-line-of { margin-bottom: 6px; }
+      .hero-sub { max-width: 100%; }
+      .hero-bottom-bar { padding: 20px 32px; }
+      .occasions-grid { grid-template-columns: repeat(2, 1fr); }
+      #corporate { grid-template-columns: 1fr; }
+      .corporate-right { display: none; }
+      .corporate-left { padding: 64px 32px; }
+      #contact { grid-template-columns: 1fr; }
+      .contact-right { padding: 0 32px 64px; }
+      .contact-left { padding: 64px 32px 48px; }
+      #occasions, #collections, #why-us, #how-it-works, #testimonials { padding: 72px 32px; }
+      .testimonials-grid { grid-template-columns: 1fr; }
     }
-
-    @media (max-width: 640px) {
-      .section { padding: 64px 0; }
-
+    @media (max-width: 600px) {
       .occasions-grid { grid-template-columns: 1fr; }
-
       .collections-grid { grid-template-columns: 1fr; }
-
-      .why-grid { grid-template-columns: 1fr 1fr; }
-
-      .corporate-perks { grid-template-columns: 1fr; }
-
-      .corporate-visual { flex-direction: column; }
-
-      .hero-actions { flex-direction: column; align-items: center; }
-
-      .footer-top { grid-template-columns: 1fr; gap: 36px; }
-
-      .footer-bottom { flex-direction: column; gap: 8px; text-align: center; }
-    }
-
-    @media (max-width: 400px) {
       .why-grid { grid-template-columns: 1fr; }
+      .why-item { border-right: none !important; border-top: none !important; padding: 24px 0 !important; }
+      .corporate-points { grid-template-columns: 1fr; }
+      nav { padding: 0 24px; }
+      footer { padding: 0 24px; flex-wrap: wrap; height: auto; padding: 20px 24px; gap: 12px; }
+      .footer-tag { display: none; }
+      .scroll-top { right: 20px; bottom: 20px; width: 44px; height: 44px; }
     }
   </style>
 </head>
-<body>
+<body id="top">
 
-  <!-- ─── Navigation ────────────────────────────────────────── -->
-  <nav id="navbar">
-    <div class="container">
-      <a href="#" class="nav-logo">Love Stewards</a>
+  <!-- SIDEBAR -->
+  <aside class="sidebar">
+    <div class="sidebar-icons">
+      <a class="sidebar-icon" href="#" aria-label="Instagram">
+        <svg viewBox="0 0 24 24"><rect x="2" y="2" width="20" height="20" rx="5" ry="5"/><circle cx="12" cy="12" r="4"/><circle cx="17.5" cy="6.5" r="1.5" fill="currentColor" stroke="none"/></svg>
+      </a>
+      <a class="sidebar-icon" href="#" aria-label="TikTok">
+        <svg viewBox="0 0 24 24" fill="none"><path d="M19.59 6.69a4.83 4.83 0 0 1-3.77-4.25V2h-3.45v13.67a2.89 2.89 0 0 1-2.88 2.5 2.89 2.89 0 0 1-2.89-2.89 2.89 2.89 0 0 1 2.89-2.89c.28 0 .54.04.79.1V9.01a6.33 6.33 0 0 0-.79-.05 6.34 6.34 0 0 0-6.34 6.34 6.34 6.34 0 0 0 6.34 6.34 6.34 6.34 0 0 0 6.33-6.34V8.69a8.18 8.18 0 0 0 4.78 1.52V6.76a4.85 4.85 0 0 1-1.01-.07z" fill="currentColor"/></svg>
+      </a>
+    </div>
+    <div class="sidebar-contact">
+      <div class="sidebar-contact-email">
+        <span>concierge@lovestewards.com</span>
+      </div>
+      <div class="sidebar-contact-phone">
+        <svg viewBox="0 0 24 24" aria-hidden="true"><path d="M22 16.92v3a2 2 0 0 1-2.18 2 19.79 19.79 0 0 1-8.63-3.07A19.5 19.5 0 0 1 4.69 12a19.79 19.79 0 0 1-3.07-8.67A2 2 0 0 1 3.61 1h3a2 2 0 0 1 2 1.72c.127.96.361 1.903.7 2.81a2 2 0 0 1-.45 2.11L7.91 8.56a16 16 0 0 0 5.94 5.94l.86-.86a2 2 0 0 1 2.11-.45c.907.339 1.85.573 2.81.7A2 2 0 0 1 22 16.92z"/></svg>
+        <span>07947908615 · 07442910982</span>
+      </div>
+    </div>
+  </aside>
+
+  <!-- MAIN -->
+  <div class="main-content">
+
+    <!-- NAV -->
+    <nav>
+      <a href="#top" class="nav-logo">Love Stewards</a>
       <ul class="nav-links">
         <li><a href="#occasions">Occasions</a></li>
         <li><a href="#collections">Collections</a></li>
         <li><a href="#corporate">Corporate</a></li>
         <li><a href="#contact" class="nav-cta">Get in Touch</a></li>
       </ul>
-      <div class="hamburger" id="hamburger" aria-label="Open menu">
-        <span></span><span></span><span></span>
-      </div>
-    </div>
-  </nav>
+    </nav>
 
-  <!-- Mobile Nav -->
-  <div class="mobile-nav" id="mobileNav">
-    <button class="mobile-nav-close" id="mobileNavClose" aria-label="Close menu">✕</button>
-    <a href="#occasions" onclick="closeMobileNav()">Occasions</a>
-    <a href="#collections" onclick="closeMobileNav()">Collections</a>
-    <a href="#corporate" onclick="closeMobileNav()">Corporate</a>
-    <a href="#why" onclick="closeMobileNav()">Why Us</a>
-    <a href="#contact" onclick="closeMobileNav()">Contact</a>
-  </div>
-
-  <!-- ─── Hero ──────────────────────────────────────────────── -->
-  <section class="hero" id="hero">
-    <div class="container">
-    <div class="hero-inner">
-      <div class="hero-content">
-        <h1>Celebrate Every<br /><em>Moment Beautifully.</em></h1>
-        <p class="hero-sub">Thoughtfully curated gift boxes for life's meaningful occasions.</p>
-        <div class="hero-actions">
-          <a href="#collections" class="btn btn-primary">Explore Gift Boxes</a>
-          <a href="#contact" class="btn btn-ghost">Create a Custom Box</a>
+    <!-- ── HERO ── -->
+    <section id="hero">
+      <div class="hero-left">
+        <span class="ghost-watermark hero-watermark">GIFTING</span>
+        <h1 class="hero-headline fade-up">
+          <span class="hero-line hero-line-light">Elevating the Art</span>
+          <span class="hero-line hero-line-light hero-line-of">of</span>
+          <span class="hero-line hero-line-gold">Thoughtful</span>
+          <span class="hero-line hero-line-gold">Gifting.</span>
+        </h1>
+        <p class="hero-sub fade-up">
+          Curated gift boxes designed to articulate your deepest sentiments — for every occasion, every milestone, every moment that matters.
+        </p>
+        <div class="hero-ctas fade-up">
+          <a href="#collections" class="btn-primary">Explore Gift Boxes</a>
+          <a href="#contact" class="btn-ghost">Create a Custom Box</a>
         </div>
       </div>
-      <div class="hero-image">
-        <div class="hero-image-frame">
-          <img
-            src="https://images.unsplash.com/photo-1513201099705-a9746e1e201f?auto=format&fit=crop&w=800&q=80"
-            alt="Elegantly wrapped gift box with satin ribbon"
-            loading="eager"
-          />
+
+      <div class="hero-right">
+        <div class="hero-single-img">
+          <img src="images/hero-new.jpg" alt="Luxury gift box" loading="eager" />
         </div>
       </div>
-    </div>
-    </div>
-  </section>
+    </section>
 
-  <!-- ─── Occasions ─────────────────────────────────────────── -->
-  <section class="section occasions" id="occasions">
-    <div class="container">
-      <div class="section-header reveal">
-        <p class="section-label">Made for Every Milestone</p>
-        <h2 class="section-title">Occasions We Cater For</h2>
-        <p class="section-subtitle">Whatever the moment, we have the perfect gift to make it unforgettable.</p>
+    <!-- ── OCCASIONS ── -->
+    <section id="occasions">
+      <span class="ghost-watermark occasions-watermark">OCCASIONS</span>
+      <div class="occasions-header">
+        <p class="section-label fade-up">Occasions</p>
+        <h2 class="fade-up">Gifts for Every<br>Chapter of Life</h2>
       </div>
+
       <div class="occasions-grid">
-        <div class="occasion-card reveal reveal-delay-1">
-          <span class="occasion-icon">🎂</span>
-          <h3>Birthdays</h3>
-          <p>Make their special day extraordinary with a box as unique as they are. From milestone birthdays to everyday celebrations.</p>
+        <div class="occasion-card fade-up">
+          <div class="occasion-card-img">
+            <img src="images/occasion-birthday.jpg" alt="Birthday celebration" loading="lazy" />
+          </div>
+          <div class="occasion-card-body">
+            <p class="occasion-card-name">Birthdays</p>
+            <p class="occasion-card-desc">Make every birthday unforgettable with a bespoke box curated just for them.</p>
+          </div>
         </div>
-        <div class="occasion-card reveal reveal-delay-2">
-          <span class="occasion-icon">💍</span>
-          <h3>Weddings</h3>
-          <p>Gift the couple a beautifully curated box to mark the beginning of their forever. Elegant, meaningful, and memorable.</p>
+        <div class="occasion-card fade-up">
+          <div class="occasion-card-img">
+            <img src="images/wedding.jpg" alt="Wedding celebration" loading="lazy" />
+          </div>
+          <div class="occasion-card-body">
+            <p class="occasion-card-name">Weddings</p>
+            <p class="occasion-card-desc">Celebrate love with a gift as meaningful as the occasion itself.</p>
+          </div>
         </div>
-        <div class="occasion-card reveal reveal-delay-3">
-          <span class="occasion-icon">🥂</span>
-          <h3>Anniversaries</h3>
-          <p>Celebrate years of love and togetherness with a thoughtfully assembled box that honours every chapter of your story.</p>
+        <div class="occasion-card fade-up">
+          <div class="occasion-card-img">
+            <img src="images/anniversary.jpg" alt="Anniversary" loading="lazy" />
+          </div>
+          <div class="occasion-card-body">
+            <p class="occasion-card-name">Anniversaries</p>
+            <p class="occasion-card-desc">Honour milestones with a curated selection of luxury keepsakes.</p>
+          </div>
         </div>
-        <div class="occasion-card reveal reveal-delay-1">
-          <span class="occasion-icon">🏢</span>
-          <h3>Corporate Gifting</h3>
-          <p>Impress clients, reward teams, and strengthen relationships with premium branded gift boxes that reflect your values.</p>
+        <div class="occasion-card fade-up">
+          <div class="occasion-card-img">
+            <img src="images/corporate.jpg" alt="Corporate gifting" loading="lazy" />
+          </div>
+          <div class="occasion-card-body">
+            <p class="occasion-card-name">Corporate Gifting</p>
+            <p class="occasion-card-desc">Strengthen business relationships with refined, branded gift experiences.</p>
+          </div>
         </div>
-        <div class="occasion-card reveal reveal-delay-2">
-          <span class="occasion-icon">🙏</span>
-          <h3>Thank You Gifts</h3>
-          <p>Express sincere gratitude in the most refined way. A gesture that goes beyond words and leaves a lasting impression.</p>
+        <div class="occasion-card fade-up">
+          <div class="occasion-card-img">
+            <img src="images/valentine.jpg" alt="Valentine gift" loading="lazy" />
+          </div>
+          <div class="occasion-card-body">
+            <p class="occasion-card-name">Valentine</p>
+            <p class="occasion-card-desc">Speak the language of love with a beautifully composed Valentine gift box.</p>
+          </div>
         </div>
-        <div class="occasion-card reveal reveal-delay-3">
-          <span class="occasion-icon">💛</span>
-          <h3>Just Because</h3>
-          <p>Sometimes the most meaningful gifts need no occasion at all. Surprise someone you love simply because they deserve it.</p>
+        <div class="occasion-card fade-up">
+          <div class="occasion-card-img">
+            <img src="images/just-because.jpg" alt="Just because" loading="lazy" />
+          </div>
+          <div class="occasion-card-body">
+            <p class="occasion-card-name">Just Because</p>
+            <p class="occasion-card-desc">Sometimes the best reason to give is simply love — no occasion needed.</p>
+          </div>
         </div>
       </div>
-    </div>
-  </section>
+    </section>
 
-  <!-- ─── Collections ───────────────────────────────────────── -->
-  <section class="section collections" id="collections">
-    <div class="container">
-      <div class="section-header centered reveal">
-        <p class="section-label">Thoughtfully Assembled</p>
-        <h2 class="section-title">Our Signature Collections</h2>
-        <p class="section-subtitle">Each collection is carefully curated to evoke a feeling — not just deliver a gift.</p>
+    <!-- ── COLLECTIONS ── -->
+    <section id="collections">
+      <span class="ghost-watermark collections-watermark">COLLECTIONS</span>
+      <div class="collections-header">
+        <p class="section-label fade-up">Collections</p>
+        <h2 class="fade-up">Our Signature Collections</h2>
       </div>
+
       <div class="collections-grid">
-        <div class="collection-card reveal reveal-delay-1">
-          <div class="collection-image">
-            <img src="https://images.unsplash.com/photo-1530103862676-de8c9debad1d?auto=format&fit=crop&w=800&q=80" alt="Colourful celebration balloons" />
+        <div class="collection-card fade-up">
+          <span class="collection-badge">Signature</span>
+          <div class="collection-img">
+            <img src="images/celebration-new.jpg" alt="Celebration collection" loading="lazy" />
           </div>
           <div class="collection-body">
-            <span class="collection-tag">Signature</span>
-            <h3>Celebration Collection</h3>
-            <p>Joy, colour, and confetti — this collection is pure festivity. Designed for birthdays, milestones, and every victory worth toasting.</p>
+            <p class="collection-name">Celebration</p>
+            <p class="collection-desc">Luxurious gifts crafted to mark life's most joyful milestones.</p>
+            <a href="#contact" class="collection-link">
+              Explore
+              <svg viewBox="0 0 24 24"><line x1="5" y1="12" x2="19" y2="12"/><polyline points="12 5 19 12 12 19"/></svg>
+            </a>
           </div>
         </div>
-        <div class="collection-card reveal reveal-delay-2">
-          <div class="collection-image">
-            <img src="https://images.unsplash.com/photo-1540555700478-4be289fbecef?auto=format&fit=crop&w=800&q=80" alt="Spa self-care essentials with candle and flowers" />
+        <div class="collection-card fade-up">
+          <span class="collection-badge">Bestseller</span>
+          <div class="collection-img">
+            <img src="images/self-care-luxury.jpg" alt="Self-Care collection" loading="lazy" />
           </div>
           <div class="collection-body">
-            <span class="collection-tag">Wellness</span>
-            <h3>Self-Care Collection</h3>
-            <p>A nurturing blend of luxe bath, beauty, and relaxation essentials. The perfect reminder to slow down and savour the moment.</p>
+            <p class="collection-name">Self-Care</p>
+            <p class="collection-desc">A haven of calm — premium wellness and beauty essentials, curated with care.</p>
+            <a href="#contact" class="collection-link">
+              Explore
+              <svg viewBox="0 0 24 24"><line x1="5" y1="12" x2="19" y2="12"/><polyline points="12 5 19 12 12 19"/></svg>
+            </a>
           </div>
         </div>
-        <div class="collection-card reveal reveal-delay-3">
-          <div class="collection-image">
-            <img src="https://images.unsplash.com/photo-1515562141207-7a88fb7ce338?auto=format&fit=crop&w=800&q=80" alt="Pearl necklace in luxury jewellery box" />
+        <div class="collection-card fade-up">
+          <span class="collection-badge">Premium</span>
+          <div class="collection-img">
+            <img src="images/collection-luxury-necklace.jpg" alt="Luxury Essentials collection" loading="lazy" />
           </div>
           <div class="collection-body">
-            <span class="collection-tag">Premium</span>
-            <h3>Luxury Essentials Collection</h3>
-            <p>The finest things, beautifully wrapped. Indulgent, elevated, and crafted for those who appreciate the extraordinary in everyday life.</p>
+            <p class="collection-name">Luxury Essentials</p>
+            <p class="collection-desc">The finest selection of premium goods for the most discerning recipients.</p>
+            <a href="#contact" class="collection-link">
+              Explore
+              <svg viewBox="0 0 24 24"><line x1="5" y1="12" x2="19" y2="12"/><polyline points="12 5 19 12 12 19"/></svg>
+            </a>
           </div>
         </div>
-        <div class="collection-card reveal reveal-delay-4">
-          <div class="collection-image">
-            <img src="https://images.unsplash.com/photo-1521791136064-7986c2920216?auto=format&fit=crop&w=800&q=80" alt="Professional business handshake" />
+        <div class="collection-card fade-up">
+          <span class="collection-badge">Corporate</span>
+          <div class="collection-img">
+            <img src="images/corporate.jpg" alt="Corporate Appreciation collection" loading="lazy" />
           </div>
           <div class="collection-body">
-            <span class="collection-tag">Corporate</span>
-            <h3>Corporate Appreciation Collection</h3>
-            <p>Make your brand feel warm and human. Thoughtfully selected items that communicate gratitude and elevate your professional relationships.</p>
+            <p class="collection-name">Corporate Appreciation</p>
+            <p class="collection-desc">Elevate your brand with sophisticated gifts that speak volumes.</p>
+            <a href="#contact" class="collection-link">
+              Explore
+              <svg viewBox="0 0 24 24"><line x1="5" y1="12" x2="19" y2="12"/><polyline points="12 5 19 12 12 19"/></svg>
+            </a>
           </div>
         </div>
       </div>
-    </div>
-  </section>
+    </section>
 
-  <!-- ─── Corporate ─────────────────────────────────────────── -->
-  <section class="section corporate" id="corporate">
-    <div class="container">
-      <div>
-        <p class="section-label reveal">For Businesses</p>
-        <h2 class="section-title reveal" style="color:var(--white);margin-bottom:20px;">Elevated Corporate Gifting</h2>
-        <p class="corporate-desc reveal">Whether you're rewarding your team, welcoming new clients, or celebrating company milestones — Love Stewards delivers gifting experiences that reflect the care your business puts into every relationship.</p>
-        <div class="corporate-perks reveal">
-          <div class="perk">
-            <div class="perk-icon">🏷️</div>
-            <div class="perk-text">
-              <h4>Custom Branding</h4>
-              <p>Your logo, your message, your impression</p>
-            </div>
-          </div>
-          <div class="perk">
-            <div class="perk-icon">📦</div>
-            <div class="perk-text">
-              <h4>Bulk Order Discounts</h4>
-              <p>Competitive pricing for large orders</p>
-            </div>
-          </div>
-          <div class="perk">
-            <div class="perk-icon">🚚</div>
-            <div class="perk-text">
-              <h4>Seamless Delivery</h4>
-              <p>Reliable fulfilment to any destination</p>
-            </div>
-          </div>
-          <div class="perk">
-            <div class="perk-icon">💼</div>
-            <div class="perk-text">
-              <h4>Client & Employee Care</h4>
-              <p>Gifts that build lasting loyalty</p>
-            </div>
-          </div>
-        </div>
-        <a href="#contact" class="btn btn-primary reveal" style="margin-top:36px;display:inline-flex;">Enquire About Corporate Orders</a>
+    <!-- ── CORPORATE ── -->
+    <section id="corporate">
+      <div class="corporate-left">
+        <span class="ghost-watermark corporate-watermark">CORPORATE</span>
+        <p class="section-label fade-up">Corporate</p>
+        <h2 class="corporate-headline fade-up">Elevated<br>Corporate Gifting</h2>
+        <ul class="corporate-points fade-up">
+          <li>Custom Branding</li>
+          <li>Seamless Delivery</li>
+          <li>Bulk Order Discounts</li>
+          <li>Client and Employee Care</li>
+        </ul>
+        <a href="#contact" class="btn-primary fade-up" style="align-self:flex-start;">
+          Enquire About Corporate Orders
+        </a>
       </div>
-      <div class="corporate-visual reveal">
-        <div class="corporate-stat-card">
-          <div class="stat-num">100%</div>
-          <div class="stat-label">Bespoke presentation — every single box</div>
-        </div>
-        <div class="corporate-stat-card">
-          <div class="stat-num">✦</div>
-          <div class="stat-label" style="font-size:1rem;color:rgba(255,255,255,.7);font-style:italic;">"Felt premium from the packaging to every detail inside."</div>
-        </div>
-        <div class="corporate-stat-card">
-          <div class="stat-num">🚀</div>
-          <div class="stat-label">Fast turnaround on bulk corporate orders</div>
-        </div>
-      </div>
-    </div>
-  </section>
 
-  <!-- ─── Why Us ────────────────────────────────────────────── -->
-  <section class="section why-us" id="why">
-    <div class="container">
-      <div class="section-header centered reveal">
-        <p class="section-label">Our Promise</p>
-        <h2 class="section-title">Why Choose Love Stewards</h2>
-        <p class="section-subtitle">Every detail is considered. Every box is a promise kept.</p>
+      <div class="corporate-right">
+        <div class="corp-single-img">
+          <img src="images/elevated-corporate.jpg" alt="Corporate gift box" loading="lazy" />
+        </div>
       </div>
+    </section>
+
+    <!-- ── WHY US ── -->
+    <section id="why-us">
+      <span class="ghost-watermark why-watermark">CRAFTED</span>
+      <div class="why-header">
+        <p class="section-label fade-up">Why Us</p>
+        <h2 class="fade-up">Why Choose Love Stewards</h2>
+      </div>
+
+      <hr class="why-divider" />
+
       <div class="why-grid">
-        <div class="why-card reveal reveal-delay-1">
-          <div class="why-icon-wrap">💝</div>
-          <h3>Curated With Intention</h3>
-          <p>Nothing is chosen at random. Every item earns its place in your box with purpose and meaning behind each selection.</p>
+        <div class="why-item fade-up">
+          <div class="why-icon">
+            <svg viewBox="0 0 24 24"><path d="M20 7H4a2 2 0 0 0-2 2v10a2 2 0 0 0 2 2h16a2 2 0 0 0 2-2V9a2 2 0 0 0-2-2z"/><path d="M16 21V5a2 2 0 0 0-2-2h-4a2 2 0 0 0-2 2v16"/></svg>
+          </div>
+          <p class="why-title">Hand-Curated Selection</p>
+          <p class="why-desc">Every item in every box is individually selected by our team of gifting specialists — never automated, always intentional.</p>
         </div>
-        <div class="why-card reveal reveal-delay-2">
-          <div class="why-icon-wrap">🎀</div>
-          <h3>Premium Presentation</h3>
-          <p>The unboxing is part of the gift. Our packaging is designed to delight from the very first glance.</p>
+        <div class="why-item fade-up">
+          <div class="why-icon">
+            <svg viewBox="0 0 24 24"><polyline points="20 12 20 22 4 22 4 12"/><rect x="2" y="7" width="20" height="5"/><line x1="12" y1="22" x2="12" y2="7"/><path d="M12 7H7.5a2.5 2.5 0 0 1 0-5C11 2 12 7 12 7z"/><path d="M12 7h4.5a2.5 2.5 0 0 0 0-5C13 2 12 7 12 7z"/></svg>
+          </div>
+          <p class="why-title">Premium Packaging</p>
+          <p class="why-desc">Presentation is everything. Our boxes arrive in signature packaging designed to create an unforgettable unboxing moment.</p>
         </div>
-        <div class="why-card reveal reveal-delay-3">
-          <div class="why-icon-wrap">✍️</div>
-          <h3>Personalised Touch</h3>
-          <p>From handwritten notes to custom selections, every box can be tailored to feel deeply personal.</p>
+        <div class="why-item fade-up">
+          <div class="why-icon">
+            <svg viewBox="0 0 24 24"><path d="M20.84 4.61a5.5 5.5 0 0 0-7.78 0L12 5.67l-1.06-1.06a5.5 5.5 0 0 0-7.78 7.78l1.06 1.06L12 21.23l7.78-7.78 1.06-1.06a5.5 5.5 0 0 0 0-7.78z"/></svg>
+          </div>
+          <p class="why-title">Personal Touch</p>
+          <p class="why-desc">From handwritten notes to bespoke colour palettes, we help you say exactly what you mean — personally and powerfully.</p>
         </div>
-        <div class="why-card reveal reveal-delay-4">
-          <div class="why-icon-wrap">📬</div>
-          <h3>Reliable & Timely Delivery</h3>
-          <p>We understand that timing matters. Your gifts arrive when they need to — beautifully intact, always on time.</p>
+        <div class="why-item fade-up">
+          <div class="why-icon">
+            <svg viewBox="0 0 24 24"><rect x="1" y="3" width="15" height="13" rx="1"/><path d="M16 8h6l3 3v5h-9V8z"/><circle cx="5.5" cy="18.5" r="2.5"/><circle cx="18.5" cy="18.5" r="2.5"/></svg>
+          </div>
+          <p class="why-title">Fast &amp; Reliable Delivery</p>
+          <p class="why-desc">We understand that timing is part of the gift. Our nationwide fulfilment ensures your gesture arrives on time, every time.</p>
         </div>
       </div>
-    </div>
-  </section>
+    </section>
 
-  <!-- ─── How It Works ──────────────────────────────────────── -->
-  <section class="section how-it-works" id="how">
-    <div class="container">
-      <div class="section-header centered reveal">
-        <p class="section-label">Simple & Seamless</p>
-        <h2 class="section-title">How It Works</h2>
-        <p class="section-subtitle">Three easy steps to give a gift they'll never forget.</p>
+    <!-- ── HOW IT WORKS ── -->
+    <section id="how-it-works">
+      <span class="ghost-watermark how-watermark">PROCESS</span>
+      <div class="how-header">
+        <p class="section-label fade-up">Process</p>
+        <h2 class="fade-up">Gifting Made Effortless</h2>
       </div>
-      <div class="steps-row">
-        <div class="step reveal reveal-delay-1">
-          <span class="step-icon">🎁</span>
-          <div class="step-num">1</div>
-          <h3>Choose Your Gift Box</h3>
-          <p>Browse our signature collections or describe your occasion and we'll guide you to the perfect match.</p>
-        </div>
-        <div class="step-connector reveal">→</div>
-        <div class="step reveal reveal-delay-2">
-          <span class="step-icon">✍️</span>
-          <div class="step-num">2</div>
-          <h3>Personalise Your Message</h3>
-          <p>Add a heartfelt note, select special add-ons, or let us customise the contents to suit your recipient.</p>
-        </div>
-        <div class="step-connector reveal">→</div>
-        <div class="step reveal reveal-delay-3">
-          <span class="step-icon">🚚</span>
-          <div class="step-num">3</div>
-          <h3>We Deliver With Care</h3>
-          <p>Sit back while we handle the rest. Your beautifully wrapped gift is delivered with love and precision.</p>
-        </div>
-      </div>
-    </div>
-  </section>
 
-  <!-- ─── Testimonials ──────────────────────────────────────── -->
-  <section class="section testimonials" id="testimonials">
-    <div class="container">
-      <div class="section-header centered reveal">
-        <p class="section-label">Kind Words</p>
-        <h2 class="section-title">What Our Customers Say</h2>
-        <p class="section-subtitle">We measure our success in the smiles we create.</p>
+      <div class="how-steps">
+        <div class="how-step fade-up">
+          <div class="how-step-num">01</div>
+          <div class="how-step-icon">
+            <svg viewBox="0 0 24 24"><path d="M6 2 3 6v14a2 2 0 0 0 2 2h14a2 2 0 0 0 2-2V6l-3-4z"/><line x1="3" y1="6" x2="21" y2="6"/><path d="M16 10a4 4 0 0 1-8 0"/></svg>
+          </div>
+          <p class="how-step-title">Choose Your Box</p>
+          <p class="how-step-desc">Browse our curated collections and select the box that speaks to the occasion — or start from scratch with a fully custom build.</p>
+        </div>
+        <div class="how-step fade-up">
+          <div class="how-step-num">02</div>
+          <div class="how-step-icon">
+            <svg viewBox="0 0 24 24"><path d="M11 4H4a2 2 0 0 0-2 2v14a2 2 0 0 0 2 2h14a2 2 0 0 0 2-2v-7"/><path d="M18.5 2.5a2.121 2.121 0 0 1 3 3L12 15l-4 1 1-4 9.5-9.5z"/></svg>
+          </div>
+          <p class="how-step-title">Personalise It</p>
+          <p class="how-step-desc">Add a handwritten note, choose your ribbon colour, or request specific items. We tailor every detail to your vision.</p>
+        </div>
+        <div class="how-step fade-up">
+          <div class="how-step-num">03</div>
+          <div class="how-step-icon">
+            <svg viewBox="0 0 24 24"><circle cx="12" cy="12" r="10"/><polyline points="12 6 12 12 16 14"/></svg>
+          </div>
+          <p class="how-step-title">We Deliver the Joy</p>
+          <p class="how-step-desc">Sit back while we beautifully package and deliver your gift directly to your recipient, right on schedule.</p>
+        </div>
       </div>
+      <hr class="how-divider-line" />
+    </section>
+
+    <!-- ── TESTIMONIALS ── -->
+    <section id="testimonials">
+      <span class="ghost-watermark testimonials-watermark">LOVE</span>
+      <div class="testimonials-header">
+        <p class="section-label fade-up">Testimonials</p>
+        <h2 class="fade-up">What Our Clients Say</h2>
+      </div>
+
       <div class="testimonials-grid">
-        <div class="testimonial-card reveal reveal-delay-1">
-          <div class="stars">★★★★★</div>
-          <p class="testimonial-text">I loved it, they loved it. From the packaging, to the arrangement, to the content — everything was very well done. It felt premium. I'll definitely reorder another time. Kudos to your sister, for a job well done.</p>
-          <div class="testimonial-author">
-            <div class="author-avatar">I</div>
-            <div>
-              <div class="author-name">Isreal</div>
-              <div class="author-label">Verified Customer</div>
-            </div>
+        <div class="testimonial-card fade-up">
+          <div class="testimonial-quote-mark">"</div>
+          <div class="testimonial-stars">
+            <svg viewBox="0 0 24 24"><polygon points="12 2 15.09 8.26 22 9.27 17 14.14 18.18 21.02 12 17.77 5.82 21.02 7 14.14 2 9.27 8.91 8.26 12 2"/></svg>
+            <svg viewBox="0 0 24 24"><polygon points="12 2 15.09 8.26 22 9.27 17 14.14 18.18 21.02 12 17.77 5.82 21.02 7 14.14 2 9.27 8.91 8.26 12 2"/></svg>
+            <svg viewBox="0 0 24 24"><polygon points="12 2 15.09 8.26 22 9.27 17 14.14 18.18 21.02 12 17.77 5.82 21.02 7 14.14 2 9.27 8.91 8.26 12 2"/></svg>
+            <svg viewBox="0 0 24 24"><polygon points="12 2 15.09 8.26 22 9.27 17 14.14 18.18 21.02 12 17.77 5.82 21.02 7 14.14 2 9.27 8.91 8.26 12 2"/></svg>
+            <svg viewBox="0 0 24 24"><polygon points="12 2 15.09 8.26 22 9.27 17 14.14 18.18 21.02 12 17.77 5.82 21.02 7 14.14 2 9.27 8.91 8.26 12 2"/></svg>
           </div>
+          <p class="testimonial-text">
+            "Love Stewards truly exceeded my expectations. Every item was carefully chosen and beautifully presented — it felt like they understood exactly what I wanted to say."
+          </p>
+          <p class="testimonial-attribution">Israel — Wedding Gift</p>
         </div>
-        <div class="testimonial-card reveal reveal-delay-2">
-          <div class="stars">★★★★★</div>
-          <p class="testimonial-text">Absolutely stunning presentation. I ordered a box for my partner's birthday and the reaction was priceless. Every detail felt considered and the quality was outstanding throughout.</p>
-          <div class="testimonial-author">
-            <div class="author-avatar">M</div>
-            <div>
-              <div class="author-name">Michael</div>
-              <div class="author-label">Verified Customer</div>
-            </div>
+        <div class="testimonial-card fade-up">
+          <div class="testimonial-quote-mark">"</div>
+          <div class="testimonial-stars">
+            <svg viewBox="0 0 24 24"><polygon points="12 2 15.09 8.26 22 9.27 17 14.14 18.18 21.02 12 17.77 5.82 21.02 7 14.14 2 9.27 8.91 8.26 12 2"/></svg>
+            <svg viewBox="0 0 24 24"><polygon points="12 2 15.09 8.26 22 9.27 17 14.14 18.18 21.02 12 17.77 5.82 21.02 7 14.14 2 9.27 8.91 8.26 12 2"/></svg>
+            <svg viewBox="0 0 24 24"><polygon points="12 2 15.09 8.26 22 9.27 17 14.14 18.18 21.02 12 17.77 5.82 21.02 7 14.14 2 9.27 8.91 8.26 12 2"/></svg>
+            <svg viewBox="0 0 24 24"><polygon points="12 2 15.09 8.26 22 9.27 17 14.14 18.18 21.02 12 17.77 5.82 21.02 7 14.14 2 9.27 8.91 8.26 12 2"/></svg>
+            <svg viewBox="0 0 24 24"><polygon points="12 2 15.09 8.26 22 9.27 17 14.14 18.18 21.02 12 17.77 5.82 21.02 7 14.14 2 9.27 8.91 8.26 12 2"/></svg>
           </div>
+          <p class="testimonial-text">
+            "The most thoughtful corporate gifts we've ever sent. Our clients were genuinely moved. We'll be ordering again and again."
+          </p>
+          <p class="testimonial-attribution">Sarah M. — Corporate Client</p>
         </div>
-        <div class="testimonial-card reveal reveal-delay-3">
-          <div class="stars">★★★★★</div>
-          <p class="testimonial-text">I've ordered from Love Stewards twice now and each time has been effortless. The personalised message made the recipient feel so special. Will always come back for meaningful gifting.</p>
-          <div class="testimonial-author">
-            <div class="author-avatar">J</div>
-            <div>
-              <div class="author-name">Janet</div>
-              <div class="author-label">Verified Customer</div>
-            </div>
+        <div class="testimonial-card fade-up">
+          <div class="testimonial-quote-mark">"</div>
+          <div class="testimonial-stars">
+            <svg viewBox="0 0 24 24"><polygon points="12 2 15.09 8.26 22 9.27 17 14.14 18.18 21.02 12 17.77 5.82 21.02 7 14.14 2 9.27 8.91 8.26 12 2"/></svg>
+            <svg viewBox="0 0 24 24"><polygon points="12 2 15.09 8.26 22 9.27 17 14.14 18.18 21.02 12 17.77 5.82 21.02 7 14.14 2 9.27 8.91 8.26 12 2"/></svg>
+            <svg viewBox="0 0 24 24"><polygon points="12 2 15.09 8.26 22 9.27 17 14.14 18.18 21.02 12 17.77 5.82 21.02 7 14.14 2 9.27 8.91 8.26 12 2"/></svg>
+            <svg viewBox="0 0 24 24"><polygon points="12 2 15.09 8.26 22 9.27 17 14.14 18.18 21.02 12 17.77 5.82 21.02 7 14.14 2 9.27 8.91 8.26 12 2"/></svg>
+            <svg viewBox="0 0 24 24"><polygon points="12 2 15.09 8.26 22 9.27 17 14.14 18.18 21.02 12 17.77 5.82 21.02 7 14.14 2 9.27 8.91 8.26 12 2"/></svg>
           </div>
+          <p class="testimonial-text">
+            "I ordered a birthday box last-minute and it arrived perfectly wrapped and on time. Absolutely stunning. I've never seen someone so moved by a gift."
+          </p>
+          <p class="testimonial-attribution">Amara K. — Birthday Gift</p>
         </div>
       </div>
-    </div>
-  </section>
+    </section>
 
-  <!-- ─── Contact ───────────────────────────────────────────── -->
-  <section class="section contact" id="contact">
-    <div class="container">
-      <div class="section-header reveal">
-        <p class="section-label">Reach Out</p>
-        <h2 class="section-title">Let's Create Something Beautiful</h2>
-        <p class="section-subtitle">We'd love to hear about your occasion. Get in touch and let us help you find the perfect gift.</p>
-      </div>
-      <div class="contact-inner">
-        <div class="contact-info">
-          <div class="contact-item reveal reveal-delay-1">
-            <div class="contact-item-icon">📞</div>
-            <div class="contact-item-body">
-              <h4>Call Us</h4>
-              <a href="tel:07947908615">07947 908615</a>
-            </div>
+    <!-- ── CONTACT ── -->
+    <section id="contact">
+      <div class="contact-left">
+        <span class="ghost-watermark contact-watermark">HELLO</span>
+        <p class="section-label fade-up">Contact</p>
+        <h2 class="contact-headline fade-up">Let's Create<br>Something Special</h2>
+
+        <div class="contact-details fade-up">
+          <div class="contact-item">
+            <svg viewBox="0 0 24 24"><path d="M22 16.92v3a2 2 0 0 1-2.18 2 19.79 19.79 0 0 1-8.63-3.07A19.5 19.5 0 0 1 4.69 12a19.79 19.79 0 0 1-3.07-8.67A2 2 0 0 1 3.61 1h3a2 2 0 0 1 2 1.72c.127.96.361 1.903.7 2.81a2 2 0 0 1-.45 2.11L7.91 8.56a16 16 0 0 0 5.94 5.94l.86-.86a2 2 0 0 1 2.11-.45c.907.339 1.85.573 2.81.7A2 2 0 0 1 22 16.92z"/></svg>
+            07947908615
           </div>
-          <div class="contact-item reveal reveal-delay-2">
-            <div class="contact-item-icon">📱</div>
-            <div class="contact-item-body">
-              <h4>Alternative Number</h4>
-              <a href="tel:07442910982">07442 910982</a>
-            </div>
+          <div class="contact-item">
+            <svg viewBox="0 0 24 24"><path d="M22 16.92v3a2 2 0 0 1-2.18 2 19.79 19.79 0 0 1-8.63-3.07A19.5 19.5 0 0 1 4.69 12a19.79 19.79 0 0 1-3.07-8.67A2 2 0 0 1 3.61 1h3a2 2 0 0 1 2 1.72c.127.96.361 1.903.7 2.81a2 2 0 0 1-.45 2.11L7.91 8.56a16 16 0 0 0 5.94 5.94l.86-.86a2 2 0 0 1 2.11-.45c.907.339 1.85.573 2.81.7A2 2 0 0 1 22 16.92z"/></svg>
+            07442910982
           </div>
-          <div class="contact-item reveal reveal-delay-3">
-            <div class="contact-item-icon">💬</div>
-            <div class="contact-item-body">
-              <h4>WhatsApp</h4>
-              <p>Scan the code or tap to message us directly</p>
-            </div>
+          <div class="contact-item">
+            <svg viewBox="0 0 24 24"><path d="M4 4h16c1.1 0 2 .9 2 2v12c0 1.1-.9 2-2 2H4c-1.1 0-2-.9-2-2V6c0-1.1.9-2 2-2z"/><polyline points="22,6 12,13 2,6"/></svg>
+            concierge@lovestewards.com
           </div>
-          <div class="contact-item reveal reveal-delay-4">
-            <div class="contact-item-icon">⏰</div>
-            <div class="contact-item-body">
-              <h4>Response Time</h4>
-              <p>We are standing by to hear from you</p>
-            </div>
-          </div>
-        </div>
-        <div class="whatsapp-section reveal">
-          <h3>Message Us on WhatsApp</h3>
-          <p>The quickest way to discuss your order or enquiry</p>
-          <div class="qr-placeholder">
-            <span>📱</span>
-            <span>WhatsApp QR Code</span>
-          </div>
-          <a href="https://wa.me/447947908615" class="wa-btn" target="_blank" rel="noopener noreferrer">
-            💬 Open WhatsApp Chat
+          <a href="https://wa.me/447947908615" target="_blank" rel="noopener noreferrer" class="contact-item whatsapp-btn">
+            <svg viewBox="0 0 24 24" aria-hidden="true"><path d="M17.472 14.382c-.297-.149-1.758-.867-2.03-.967-.273-.099-.471-.148-.67.15-.197.297-.767.966-.94 1.164-.173.199-.347.223-.644.075-.297-.15-1.255-.463-2.39-1.475-.883-.788-1.48-1.761-1.653-2.059-.173-.297-.018-.458.13-.606.134-.133.298-.347.446-.52.149-.174.198-.298.298-.497.099-.198.05-.371-.025-.52-.075-.149-.669-1.612-.916-2.207-.242-.579-.487-.5-.669-.51-.173-.008-.371-.01-.57-.01-.198 0-.52.074-.792.372-.272.297-1.04 1.016-1.04 2.479 0 1.462 1.065 2.875 1.213 3.074.149.198 2.096 3.2 5.077 4.487.709.306 1.262.489 1.694.625.712.227 1.36.195 1.871.118.571-.085 1.758-.719 2.006-1.413.248-.694.248-1.289.173-1.413-.074-.124-.272-.198-.57-.347m-5.421 7.403h-.004a9.87 9.87 0 0 1-5.031-1.378l-.361-.214-3.741.982.998-3.648-.235-.374a9.86 9.86 0 0 1-1.51-5.26c.001-5.45 4.436-9.884 9.888-9.884 2.64 0 5.122 1.03 6.988 2.898a9.825 9.825 0 0 1 2.893 6.994c-.003 5.45-4.437 9.884-9.885 9.884m8.413-18.297A11.815 11.815 0 0 0 12.05 0C5.495 0 .16 5.335.157 11.892c0 2.096.547 4.142 1.588 5.945L.057 24l6.305-1.654a11.882 11.882 0 0 0 5.683 1.448h.005c6.554 0 11.89-5.335 11.893-11.893a11.821 11.821 0 0 0-3.48-8.413Z"/></svg>
+            Message Us
           </a>
-        </div>
-      </div>
-    </div>
-  </section>
-
-  <!-- ─── Footer ────────────────────────────────────────────── -->
-  <footer>
-    <div class="container">
-      <div class="footer-top">
-        <div>
-          <div class="footer-brand-name">Love Stewards</div>
-          <p class="footer-tagline">Stewarding Meaningful Moments<br />Through Thoughtful Gifting.</p>
-          <div class="social-icons">
-            <a href="#" class="social-icon" aria-label="Instagram" title="Instagram (coming soon)">📸</a>
-            <a href="#" class="social-icon" aria-label="TikTok" title="TikTok (coming soon)">🎵</a>
+          <div class="contact-barcode">
+            <img src="images/whatsapp-barcode.svg" alt="Scan to WhatsApp" loading="lazy" />
           </div>
         </div>
-        <div class="footer-col">
-          <h4>Explore</h4>
-          <ul>
-            <li><a href="#occasions">Occasions</a></li>
-            <li><a href="#collections">Collections</a></li>
-            <li><a href="#corporate">Corporate Gifting</a></li>
-            <li><a href="#how">How It Works</a></li>
-          </ul>
-        </div>
-        <div class="footer-col">
-          <h4>Contact</h4>
-          <ul>
-            <li><a href="tel:07947908615">07947 908615</a></li>
-            <li><a href="tel:07442910982">07442 910982</a></li>
-            <li><a href="https://wa.me/447947908615" target="_blank" rel="noopener noreferrer">WhatsApp Us</a></li>
-          </ul>
-        </div>
       </div>
-      <div class="footer-bottom">
-        <p>© 2025 <span class="footer-gold">Love Stewards</span>. All rights reserved.</p>
-        <p>Made with <span class="footer-gold">♥</span> for every meaningful moment</p>
-      </div>
-    </div>
-  </footer>
 
-  <!-- ─── Scripts ───────────────────────────────────────────── -->
+      <div class="contact-right">
+        <form class="contact-form" onsubmit="return false;">
+          <div class="form-group fade-up">
+            <label class="form-label" for="name">Your Name</label>
+            <input class="form-input" type="text" id="name" placeholder="e.g. Sarah Johnson" />
+          </div>
+          <div class="form-group fade-up">
+            <label class="form-label" for="occasion">Occasion Type</label>
+            <select class="form-select" id="occasion">
+              <option value="" disabled selected>Select an occasion</option>
+              <option>Birthday</option>
+              <option>Wedding</option>
+              <option>Anniversary</option>
+              <option>Valentine</option>
+              <option>Corporate Gifting</option>
+              <option>Just Because</option>
+              <option>Other</option>
+            </select>
+          </div>
+          <div class="form-group fade-up">
+            <label class="form-label" for="message">Your Message</label>
+            <textarea class="form-textarea" id="message" placeholder="Tell us about your gifting vision..."></textarea>
+          </div>
+          <button class="btn-submit fade-up">Send Enquiry</button>
+        </form>
+      </div>
+    </section>
+
+    <!-- FOOTER -->
+    <footer>
+      <span class="footer-logo">Love Stewards</span>
+      <span class="footer-tag">Stewarding Meaningful Moments Through Thoughtful Gifting.</span>
+      <div class="footer-icons">
+        <a class="footer-icon" href="#" aria-label="Instagram">
+          <svg viewBox="0 0 24 24"><rect x="2" y="2" width="20" height="20" rx="5" ry="5"/><circle cx="12" cy="12" r="4"/><circle cx="17.5" cy="6.5" r="1.5" fill="currentColor" stroke="none"/></svg>
+        </a>
+        <a class="footer-icon" href="#" aria-label="TikTok">
+          <svg viewBox="0 0 24 24" fill="none"><path d="M19.59 6.69a4.83 4.83 0 0 1-3.77-4.25V2h-3.45v13.67a2.89 2.89 0 0 1-2.88 2.5 2.89 2.89 0 0 1-2.89-2.89 2.89 2.89 0 0 1 2.89-2.89c.28 0 .54.04.79.1V9.01a6.33 6.33 0 0 0-.79-.05 6.34 6.34 0 0 0-6.34 6.34 6.34 6.34 0 0 0 6.34 6.34 6.34 6.34 0 0 0 6.33-6.34V8.69a8.18 8.18 0 0 0 4.78 1.52V6.76a4.85 4.85 0 0 1-1.01-.07z" fill="currentColor"/></svg>
+        </a>
+      </div>
+    </footer>
+
+    <a href="#top" class="scroll-top" aria-label="Back to top">
+      <svg viewBox="0 0 24 24" aria-hidden="true"><line x1="12" y1="19" x2="12" y2="5"/><polyline points="5 12 12 5 19 12"/></svg>
+    </a>
+
+  </div><!-- end .main-content -->
+
   <script>
-    // Sticky nav
-    const navbar = document.getElementById('navbar');
-    window.addEventListener('scroll', () => {
-      navbar.classList.toggle('scrolled', window.scrollY > 60);
-    });
-
-    // Mobile nav
-    const hamburger = document.getElementById('hamburger');
-    const mobileNav = document.getElementById('mobileNav');
-    const mobileNavClose = document.getElementById('mobileNavClose');
-
-    hamburger.addEventListener('click', () => {
-      mobileNav.classList.add('open');
-      document.body.style.overflow = 'hidden';
-    });
-
-    mobileNavClose.addEventListener('click', closeMobileNav);
-
-    function closeMobileNav() {
-      mobileNav.classList.remove('open');
-      document.body.style.overflow = '';
-    }
-
-    // Scroll reveal
-    const reveals = document.querySelectorAll('.reveal');
+    // Scroll-triggered fade-up animations
     const observer = new IntersectionObserver((entries) => {
       entries.forEach(entry => {
         if (entry.isIntersecting) {
           entry.target.classList.add('visible');
-          observer.unobserve(entry.target);
         }
       });
-    }, { threshold: 0.12, rootMargin: '0px 0px -40px 0px' });
+    }, { threshold: 0.1, rootMargin: '0px 0px -40px 0px' });
 
-    reveals.forEach(el => observer.observe(el));
+    document.querySelectorAll('.fade-up').forEach(el => observer.observe(el));
 
+    // Active nav link on scroll
+    const sections = document.querySelectorAll('section[id]');
+    const navLinks = document.querySelectorAll('.nav-links a[href^="#"]');
+
+    const navObserver = new IntersectionObserver((entries) => {
+      entries.forEach(entry => {
+        if (entry.isIntersecting) {
+          navLinks.forEach(link => {
+            link.classList.remove('active');
+            if (link.getAttribute('href') === '#' + entry.target.id) {
+              link.classList.add('active');
+            }
+          });
+        }
+      });
+    }, { threshold: 0.35 });
+
+    sections.forEach(s => navObserver.observe(s));
+
+    const scrollTopButton = document.querySelector('.scroll-top');
+
+    const toggleScrollTop = () => {
+      if (!scrollTopButton) return;
+      scrollTopButton.classList.toggle('visible', window.scrollY > 480);
+    };
+
+    window.addEventListener('scroll', toggleScrollTop, { passive: true });
+    toggleScrollTop();
   </script>
+
 </body>
 </html>

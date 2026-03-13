@@ -1,0 +1,565 @@
+<html lang="en" vid="0"><head vid="1">
+    <meta charset="UTF-8" vid="2">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" vid="3">
+    <title vid="4">Love Stewards | Curated Gifting</title>
+    <link rel="preconnect" href="https://fonts.googleapis.com" vid="5">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin="" vid="6">
+    <link href="https://fonts.googleapis.com/css2?family=Plus+Jakarta+Sans:wght@300;400;500;600;800&amp;display=swap" rel="stylesheet" vid="7">
+    <style vid="8">
+        :root {
+            --bg-color: #1B1D22;
+            --text-primary: #E8E9EA;
+            --text-secondary: #8E929A;
+            --accent-gold: #CBA57A;
+            --border-subtle: rgba(255, 255, 255, 0.08);
+            --ghost-color: rgba(255, 255, 255, 0.02);
+            --sidebar-width: 65px;
+            --nav-height: 100px;
+        }
+
+        * {
+            margin: 0;
+            padding: 0;
+            box-sizing: border-box;
+            -webkit-font-smoothing: antialiased;
+            -moz-osx-font-smoothing: grayscale;
+        }
+
+        body {
+            background-color: var(--bg-color);
+            color: var(--text-primary);
+            font-family: 'Plus Jakarta Sans', sans-serif;
+            overflow: hidden; 
+            height: 100vh;
+            width: 100vw;
+            display: flex;
+        }
+
+        
+        .sidebar {
+            width: var(--sidebar-width);
+            height: 100vh;
+            border-right: 1px solid var(--border-subtle);
+            display: flex;
+            flex-direction: column;
+            justify-content: space-between;
+            align-items: center;
+            padding: 2.5rem 0;
+            position: relative;
+            z-index: 10;
+            background: var(--bg-color);
+        }
+
+        .social-icons {
+            display: flex;
+            flex-direction: column;
+            gap: 1.5rem;
+        }
+
+        .social-icons svg {
+            width: 14px;
+            height: 14px;
+            fill: var(--text-secondary);
+            transition: fill 0.3s ease;
+            cursor: pointer;
+        }
+
+        .social-icons svg:hover {
+            fill: var(--text-primary);
+        }
+
+        .contact-info-vertical {
+            writing-mode: vertical-rl;
+            transform: rotate(180deg);
+            display: flex;
+            align-items: center;
+            gap: 2rem;
+            font-size: 0.65rem;
+            letter-spacing: 0.1em;
+            text-transform: uppercase;
+            color: var(--text-secondary);
+        }
+
+        .contact-info-vertical a {
+            color: inherit;
+            text-decoration: none;
+            transition: color 0.3s ease;
+            display: flex;
+            align-items: center;
+            gap: 0.5rem;
+        }
+
+        .contact-info-vertical a:hover {
+            color: var(--text-primary);
+        }
+
+        .contact-info-vertical svg {
+            width: 10px;
+            height: 10px;
+            fill: currentColor;
+            transform: rotate(90deg); 
+        }
+
+        
+        .main-wrapper {
+            flex: 1;
+            display: flex;
+            flex-direction: column;
+            position: relative;
+        }
+
+        
+        header {
+            height: var(--nav-height);
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+            padding: 0 4rem;
+            position: relative;
+            z-index: 10;
+        }
+
+        .logo {
+            font-weight: 800;
+            font-size: 1.2rem;
+            letter-spacing: -0.02em;
+            color: var(--text-primary);
+        }
+
+        nav {
+            display: flex;
+            align-items: center;
+        }
+
+        .nav-links {
+            display: flex;
+            align-items: center;
+            list-style: none;
+        }
+
+        .nav-links li {
+            display: flex;
+            align-items: center;
+        }
+
+        .nav-links li:not(:last-child)::after {
+            content: '•';
+            color: var(--text-secondary);
+            font-size: 0.5rem;
+            margin: 0 1.5rem;
+            opacity: 0.5;
+        }
+
+        .nav-links a {
+            color: var(--text-secondary);
+            text-decoration: none;
+            font-size: 0.8rem;
+            font-weight: 500;
+            transition: color 0.3s ease;
+        }
+
+        .nav-links a.active, .nav-links a:hover {
+            color: var(--text-primary);
+        }
+
+        .header-actions {
+            display: flex;
+            gap: 1.5rem;
+        }
+
+        .header-actions svg {
+            width: 16px;
+            height: 16px;
+            stroke: var(--text-primary);
+            fill: none;
+            stroke-width: 2;
+            stroke-linecap: round;
+            stroke-linejoin: round;
+            cursor: pointer;
+            transition: opacity 0.3s ease;
+        }
+
+        .header-actions svg:hover {
+            opacity: 0.7;
+        }
+
+        
+        .hero-section {
+            flex: 1;
+            display: grid;
+            grid-template-columns: 1fr 1fr;
+            padding: 0 4rem;
+            position: relative;
+        }
+
+        
+        .ghost-watermark {
+            position: absolute;
+            top: 15%;
+            left: 2rem;
+            font-size: 13vw;
+            font-weight: 800;
+            color: var(--ghost-color);
+            text-transform: uppercase;
+            letter-spacing: -0.02em;
+            line-height: 0.8;
+            pointer-events: none;
+            z-index: 0;
+            user-select: none;
+            white-space: nowrap;
+            animation: fadeUpIn 2s cubic-bezier(0.16, 1, 0.3, 1) forwards;
+        }
+
+        .hero-content {
+            display: flex;
+            flex-direction: column;
+            justify-content: center;
+            position: relative;
+            z-index: 2;
+            padding-bottom: 5rem; 
+        }
+
+        h1 {
+            font-size: clamp(3rem, 4.5vw, 5rem);
+            line-height: 1.1;
+            font-weight: 400;
+            margin-bottom: 1.5rem;
+            letter-spacing: -0.01em;
+            animation: fadeUpIn 1s cubic-bezier(0.16, 1, 0.3, 1) forwards;
+            opacity: 0;
+            animation-delay: 0.2s;
+        }
+
+        h1 .highlight {
+            color: var(--accent-gold);
+            font-weight: 600;
+        }
+
+        .hero-description {
+            color: var(--text-secondary);
+            font-size: 0.9rem;
+            line-height: 1.7;
+            max-width: 420px;
+            margin-bottom: 3rem;
+            animation: fadeUpIn 1s cubic-bezier(0.16, 1, 0.3, 1) forwards;
+            opacity: 0;
+            animation-delay: 0.4s;
+        }
+
+        .cta-button {
+            display: inline-flex;
+            align-items: center;
+            gap: 1rem;
+            text-decoration: none;
+            color: var(--text-primary);
+            font-size: 0.75rem;
+            font-weight: 600;
+            letter-spacing: 0.1em;
+            text-transform: uppercase;
+            animation: fadeUpIn 1s cubic-bezier(0.16, 1, 0.3, 1) forwards;
+            opacity: 0;
+            animation-delay: 0.6s;
+            transition: opacity 0.3s ease;
+        }
+
+        .cta-button:hover {
+            opacity: 0.8;
+        }
+
+        .cta-icon-wrapper {
+            width: 40px;
+            height: 40px;
+            border-radius: 50%;
+            background: rgba(255, 255, 255, 0.03);
+            display: flex;
+            justify-content: center;
+            align-items: center;
+            border: 1px solid rgba(255, 255, 255, 0.05);
+            transition: background 0.3s ease;
+        }
+
+        .cta-button:hover .cta-icon-wrapper {
+            background: rgba(255, 255, 255, 0.08);
+        }
+
+        .cta-icon-wrapper svg {
+            width: 10px;
+            height: 10px;
+            fill: var(--text-primary);
+            margin-left: 2px; 
+        }
+
+        
+        .hero-visuals {
+            display: flex;
+            align-items: center;
+            justify-content: flex-end;
+            gap: 1.2rem;
+            height: 100%;
+            position: relative;
+            z-index: 1;
+            padding-right: 2rem;
+        }
+
+        .slice-container {
+            width: 10vw; 
+            max-width: 160px;
+            overflow: hidden;
+            border-radius: 2px;
+            opacity: 0;
+            animation: sliceReveal 1.5s cubic-bezier(0.16, 1, 0.3, 1) forwards;
+        }
+
+        .slice-container img {
+            width: 100%;
+            height: 100%;
+            object-fit: cover;
+            filter: brightness(0.85) contrast(1.1); 
+            transition: filter 0.5s ease, transform 10s ease;
+        }
+
+        .slice-container:hover img {
+            filter: brightness(1) contrast(1.1);
+            transform: scale(1.05);
+        }
+
+        
+        .slice-1 { 
+            height: 55vh; 
+            align-self: flex-end; 
+            margin-bottom: 15vh; 
+            animation-delay: 0.4s;
+        }
+        .slice-2 { 
+            height: 80vh; 
+            align-self: flex-start; 
+            margin-top: -5vh; 
+            animation-delay: 0.6s;
+        }
+        .slice-3 { 
+            height: 65vh; 
+            align-self: center; 
+            animation-delay: 0.8s;
+        }
+        .slice-4 { 
+            height: 50vh; 
+            align-self: flex-end; 
+            margin-bottom: 5vh; 
+            animation-delay: 1.0s;
+        }
+
+        
+        .bottom-bar {
+            position: absolute;
+            bottom: 2.5rem;
+            left: 4rem;
+            right: 4rem;
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+            z-index: 10;
+            opacity: 0;
+            animation: fadeUpIn 1s cubic-bezier(0.16, 1, 0.3, 1) forwards;
+            animation-delay: 1.2s;
+        }
+
+        .pagination {
+            display: flex;
+            align-items: center;
+            gap: 1rem;
+            font-size: 0.7rem;
+            color: var(--text-secondary);
+            letter-spacing: 0.05em;
+        }
+
+        .pagination .current {
+            color: var(--text-primary);
+        }
+
+        .pagination-line {
+            width: 60px;
+            height: 1px;
+            background: var(--border-subtle);
+        }
+
+        .scroll-indicator {
+            display: flex;
+            align-items: center;
+            gap: 1.5rem;
+            font-size: 0.65rem;
+            text-transform: uppercase;
+            letter-spacing: 0.1em;
+            color: var(--text-secondary);
+        }
+
+        .scroll-arrows {
+            display: flex;
+            gap: 0.5rem;
+        }
+
+        .scroll-arrows svg {
+            width: 16px;
+            height: 16px;
+            fill: var(--text-secondary);
+            cursor: pointer;
+            transition: fill 0.3s ease;
+        }
+
+        .scroll-arrows svg:hover {
+            fill: var(--text-primary);
+        }
+
+        
+        @keyframes fadeUpIn {
+            0% { opacity: 0; transform: translateY(20px); }
+            100% { opacity: 1; transform: translateY(0); }
+        }
+
+        @keyframes sliceReveal {
+            0% { opacity: 0; clip-path: inset(100% 0 0 0); }
+            100% { opacity: 1; clip-path: inset(0 0 0 0); }
+        }
+
+        
+        @media (max-width: 1024px) {
+            h1 { font-size: 3.5rem; }
+            .hero-visuals { gap: 0.5rem; padding-right: 0; }
+            .slice-container { width: 12vw; }
+        }
+
+        @media (max-width: 768px) {
+            body { overflow-y: auto; overflow-x: hidden; height: auto; flex-direction: column; }
+            .sidebar { display: none; } 
+            .main-wrapper { width: 100vw; }
+            header { padding: 0 2rem; height: 80px; }
+            .nav-links { display: none; } 
+            
+            .hero-section {
+                grid-template-columns: 1fr;
+                padding: 0 2rem;
+                height: auto;
+                min-height: calc(100vh - 80px);
+            }
+            
+            .ghost-watermark { font-size: 20vw; top: 5%; left: 0; }
+            
+            .hero-content { padding-top: 4rem; padding-bottom: 4rem; }
+            h1 { font-size: 2.5rem; }
+            
+            .hero-visuals {
+                justify-content: center;
+                gap: 1rem;
+                height: 50vh;
+                margin-bottom: 4rem;
+                padding-right: 0;
+            }
+            
+            .slice-container { width: 22vw; max-width: none; }
+            .slice-1 { height: 40vh; margin-bottom: 5vh; }
+            .slice-2 { height: 50vh; margin-top: 0; }
+            .slice-3 { height: 45vh; }
+            .slice-4 { height: 35vh; margin-bottom: 0; }
+
+            .bottom-bar { position: relative; bottom: 0; left: 0; right: 0; padding-bottom: 2rem; flex-direction: column; gap: 2rem; align-items: flex-start; }
+        }
+    </style>
+</head>
+<body vid="9">
+
+    
+    <aside class="sidebar" vid="10">
+        <div class="social-icons" vid="11">
+            
+            <svg viewBox="0 0 24 24" vid="12"><path d="M12 2.163c3.204 0 3.584.012 4.85.07 3.252.148 4.771 1.691 4.919 4.919.058 1.265.069 1.645.069 4.849 0 3.205-.012 3.584-.069 4.849-.149 3.225-1.664 4.771-4.919 4.919-1.266.058-1.644.07-4.85.07-3.204 0-3.584-.012-4.849-.07-3.26-.149-4.771-1.699-4.919-4.92-.058-1.265-.07-1.644-.07-4.849 0-3.204.013-3.583.07-4.849.149-3.227 1.664-4.771 4.919-4.919 1.266-.057 1.645-.069 4.849-.069zM12 0C8.741 0 8.333.014 7.053.072 2.695.272.273 2.69.073 7.052.014 8.333 0 8.741 0 12c0 3.259.014 3.668.072 4.948.2 4.358 2.618 6.78 6.98 6.98C8.333 23.986 8.741 24 12 24c3.259 0 3.668-.014 4.948-.072 4.354-.2 6.782-2.618 6.979-6.98.059-1.28.073-1.689.073-4.948 0-3.259-.014-3.667-.072-4.947-.196-4.354-2.617-6.78-6.979-6.98C15.668.014 15.259 0 12 0zm0 5.838a6.162 6.162 0 100 12.324 6.162 6.162 0 000-12.324zM12 16a4 4 0 110-8 4 4 0 010 8zm3.98-10.181a1.44 1.44 0 11-2.88 0 1.44 1.44 0 012.88 0z" vid="13"></path></svg>
+            <svg viewBox="0 0 24 24" vid="14"><path d="M24 4.557c-.883.392-1.832.656-2.828.775 1.017-.609 1.798-1.574 2.165-2.724-.951.564-2.005.974-3.127 1.195-.897-.957-2.178-1.555-3.594-1.555-3.179 0-5.515 2.966-4.797 6.045-4.091-.205-7.719-2.165-10.148-5.144-1.29 2.213-.669 5.108 1.523 6.574-.806-.026-1.566-.247-2.229-.616-.054 2.281 1.581 4.415 3.949 4.89-.693.188-1.452.232-2.224.084.626 1.956 2.444 3.379 4.6 3.419-2.07 1.623-4.678 2.348-7.29 2.04 2.179 1.397 4.768 2.212 7.548 2.212 9.142 0 14.307-7.721 13.995-14.646.962-.695 1.797-1.562 2.457-2.549z" vid="15"></path></svg>
+            <svg viewBox="0 0 24 24" vid="16"><path d="M12.017 0C5.396 0 .029 5.367.029 11.987c0 5.079 3.158 9.417 7.618 11.162-.105-.949-.199-2.403.041-3.439.219-.937 1.406-5.957 1.406-5.957s-.359-.72-.359-1.781c0-1.663.967-2.911 2.168-2.911 1.024 0 1.518.769 1.518 1.688 0 1.029-.653 2.567-.992 3.992-.285 1.193.6 2.165 1.775 2.165 2.128 0 3.768-2.245 3.768-5.487 0-2.861-2.063-4.869-5.008-4.869-3.41 0-5.409 2.562-5.409 5.199 0 1.033.394 2.143.889 2.741.099.12.112.225.085.345-.09.375-.293 1.199-.334 1.363-.053.225-.172.271-.401.165-1.495-.69-2.433-2.878-2.433-4.646 0-3.776 2.748-7.252 7.951-7.252 4.163 0 7.398 2.967 7.398 6.923 0 4.135-2.607 7.462-6.233 7.462-1.214 0-2.354-.629-2.758-1.379l-.749 2.848c-.269 1.045-1.004 2.352-1.498 3.146 1.123.345 2.306.535 3.55.535 6.607 0 11.985-5.365 11.985-11.987C23.97 5.367 18.592 0 12.017 0z" vid="17"></path></svg>
+        </div>
+        
+        <div class="contact-info-vertical" vid="18">
+            <a href="tel:+18005550199" vid="19">
+                <svg viewBox="0 0 24 24" vid="20"><path d="M20 22.621l-3.521-6.795c-.008.004-1.974.97-2.064 1.011-2.24 1.086-6.799-7.82-4.609-8.994l2.083-1.026-3.493-6.817-2.106 1.039c-7.202 3.755 4.233 25.982 11.6 22.615.121-.055 2.102-1.029 2.11-1.033z" vid="21"></path></svg>
+                +1 800 555 0199
+            </a>
+            <a href="mailto:concierge@lovestewards.com" vid="22">concierge@lovestewards.com</a>
+        </div>
+    </aside>
+
+    <div class="main-wrapper" vid="23">
+        
+        <header vid="24">
+            <div class="logo" vid="25">Love Stewards</div>
+            <nav vid="26">
+                <ul class="nav-links" vid="27">
+                    <li vid="28"><a href="#" class="active" vid="29">Home</a></li>
+                    <li vid="30"><a href="#" vid="31">About Us</a></li>
+                    <li vid="32"><a href="#" vid="33">Collections</a></li>
+                    <li vid="34"><a href="#" vid="35">Corporate</a></li>
+                    <li vid="36"><a href="#" vid="37">Journal</a></li>
+                    <li vid="38"><a href="#" vid="39">Contact</a></li>
+                </ul>
+            </nav>
+            <div class="header-actions" vid="40">
+                <svg viewBox="0 0 24 24" vid="41"><circle cx="11" cy="11" r="8" vid="42"></circle><line x1="21" y1="21" x2="16.65" y2="16.65" vid="43"></line></svg>
+                <svg viewBox="0 0 24 24" vid="44"><path d="M20 21v-2a4 4 0 0 0-4-4H8a4 4 0 0 0-4 4v2" vid="45"></path><circle cx="12" cy="7" r="4" vid="46"></circle></svg>
+            </div>
+        </header>
+
+        
+        <main class="hero-section" vid="47">
+            
+            <div class="ghost-watermark" vid="48">GIFTING</div>
+
+            <div class="hero-content" vid="49">
+                <h1 vid="50">
+                    Elevating the Art of <br vid="51">
+                    <span class="highlight" vid="52">Thoughtful Gifting.</span>
+                </h1>
+                <p class="hero-description" vid="53">
+                    Curated gift boxes designed to articulate your deepest sentiments. From intimate weddings to corporate milestones, every detail is hand-selected to create an unforgettable unboxing experience.
+                </p>
+                <a href="#" class="cta-button" vid="54">
+                    <span class="cta-icon-wrapper" vid="55">
+                        <svg viewBox="0 0 24 24" vid="56"><path d="M5 3l14 9-14 9V3z" vid="57"></path></svg>
+                    </span>
+                    Explore Collections
+                </a>
+            </div>
+
+            
+            <div class="hero-visuals" vid="58">
+                <div class="slice-container slice-1" vid="59">
+                    <img src="https://images.unsplash.com/photo-1605282717367-5d5d852cc5eb?auto=format&amp;fit=crop&amp;q=80&amp;w=400&amp;h=1000" alt="Dark textured ribbon" vid="60">
+                </div>
+                <div class="slice-container slice-2" vid="61">
+                    <img src="https://images.unsplash.com/photo-1599305090598-fe179d501227?auto=format&amp;fit=crop&amp;q=80&amp;w=400&amp;h=1400" alt="Elegant glassware perfume" vid="62">
+                </div>
+                <div class="slice-container slice-3" vid="63">
+                    <img src="https://images.unsplash.com/photo-1549465220-1a8b9238cd48?auto=format&amp;fit=crop&amp;q=80&amp;w=400&amp;h=1200" alt="Premium gift box packaging" vid="64">
+                </div>
+                <div class="slice-container slice-4" vid="65">
+                    <img src="https://images.unsplash.com/photo-1614030424754-24d0eebd46b2?auto=format&amp;fit=crop&amp;q=80&amp;w=400&amp;h=900" alt="Moody abstract floral texture" vid="66">
+                </div>
+            </div>
+
+            
+            <div class="bottom-bar" vid="67">
+                <div class="pagination" vid="68">
+                    <span class="current" vid="69">01</span>
+                    <div class="pagination-line" vid="70"></div>
+                    <span vid="71">Signature Boxes</span>
+                </div>
+                
+                <div class="scroll-indicator" vid="72">
+                    <span vid="73">Scroll</span>
+                    <div class="scroll-arrows" vid="74">
+                        <svg viewBox="0 0 24 24" width="16" height="16" vid="75"><path d="M15.41 16.59L10.83 12l4.58-4.59L14 6l-6 6 6 6 1.41-1.41z" vid="76"></path></svg>
+                        <svg viewBox="0 0 24 24" width="16" height="16" vid="77"><path d="M8.59 16.59L13.17 12 8.59 7.41 10 6l6 6-6 6-1.41-1.41z" vid="78"></path></svg>
+                    </div>
+                </div>
+            </div>
+
+        </main>
+    </div>
+
+
+</body></html>

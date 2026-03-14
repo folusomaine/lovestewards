@@ -1,2 +1,8 @@
 CLAUDE.md
 prompt.md
+.DS_Store
+*.txt
+.superpowers
+*.pen
+design-style.html
+docs/

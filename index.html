@@ -102,10 +102,8 @@
     nav {
       position: sticky;
       top: 0;
-      left: var(--sidebar-w);
-      right: 0;
       height: var(--nav-h);
-      margin-left: var(--sidebar-w);
+      width: 100%;
       background: rgba(27,29,34,0.95);
       backdrop-filter: blur(12px);
       border-bottom: 1px solid var(--border);
@@ -158,6 +156,38 @@
     }
     .nav-links a:hover, .nav-links a.active { color: var(--text-primary); }
 
+    .nav-toggle {
+      display: none;
+      width: 38px;
+      height: 38px;
+      margin-left: 16px;
+      border: 1px solid var(--border);
+      border-radius: 2px;
+      background: transparent;
+      color: var(--text-primary);
+      flex-direction: column;
+      align-items: center;
+      justify-content: center;
+      gap: 4px;
+      cursor: pointer;
+      transition: border-color 0.2s, color 0.2s;
+    }
+    .nav-toggle:hover {
+      border-color: var(--gold);
+      color: var(--gold);
+    }
+    .nav-toggle span {
+      display: block;
+      width: 16px;
+      height: 1.5px;
+      background: currentColor;
+      transition: transform 0.2s, opacity 0.2s;
+    }
+
+    nav.nav-open .nav-toggle span:nth-child(1) { transform: translateY(5.5px) rotate(45deg); }
+    nav.nav-open .nav-toggle span:nth-child(2) { opacity: 0; }
+    nav.nav-open .nav-toggle span:nth-child(3) { transform: translateY(-5.5px) rotate(-45deg); }
+
 
     /* ── MAIN CONTENT OFFSET ── */
     .main-content { margin-left: var(--sidebar-w); }
@@ -198,6 +228,8 @@
       flex-direction: column;
       justify-content: center;
       padding: 80px 64px 80px 56px;
+      container-type: inline-size;
+      container-name: hero-copy;
       position: relative;
       z-index: 1;
     }
@@ -230,6 +262,14 @@
       display: block;
     }
 
+    .hero-line-mobile {
+      display: none;
+    }
+
+    .hero-line-desktop {
+      white-space: nowrap;
+    }
+
     .hero-line-light {
       color: var(--text-primary);
       font-weight: 300;
@@ -256,6 +296,13 @@
     }
 
     .hero-ctas { display: flex; align-items: center; gap: 20px; flex-wrap: wrap; }
+    .hero-ctas .btn-primary,
+    .hero-ctas .btn-ghost {
+      width: min(100%, 260px);
+      min-height: 48px;
+      justify-content: center;
+      text-align: center;
+    }
 
     .btn-primary {
       display: inline-flex;
@@ -951,6 +998,18 @@
     .fade-up:nth-child(6) { transition-delay: 0.4s; }
 
     /* ── RESPONSIVE ── */
+    @container hero-copy (max-width: 700px) {
+      .hero-line-desktop { display: none; }
+      .hero-line-mobile { display: block; }
+      .hero-line-mobile + .hero-line-mobile { margin-top: 0.08em; }
+    }
+    @supports not (container-type: inline-size) {
+      @media (max-width: 1280px) {
+        .hero-line-desktop { display: none; }
+        .hero-line-mobile { display: block; }
+        .hero-line-mobile + .hero-line-mobile { margin-top: 0.08em; }
+      }
+    }
     @media (max-width: 1200px) {
       .collections-grid { grid-template-columns: repeat(2, 1fr); }
     }
@@ -965,11 +1024,40 @@
     @media (max-width: 900px) {
       .sidebar { display: none; }
       .main-content { margin-left: 0; }
-      nav { margin-left: 0; }
-      .nav-links { display: none; }
+      .nav-toggle { display: inline-flex; }
+      .nav-links {
+        display: none;
+        position: absolute;
+        top: calc(100% + 1px);
+        left: 0;
+        right: 0;
+        margin-left: 0;
+        padding: 12px 32px 20px;
+        flex-direction: column;
+        align-items: flex-start;
+        gap: 4px;
+        background: rgba(27,29,34,0.98);
+        backdrop-filter: blur(12px);
+        border-bottom: 1px solid var(--border);
+      }
+      nav.nav-open .nav-links { display: flex; }
+      .nav-links li { width: 100%; }
+      .nav-links a { display: block; width: 100%; padding: 10px 0; }
+      .nav-links .nav-cta {
+        width: auto;
+        margin-top: 6px;
+        padding: 10px 14px !important;
+      }
       #hero { grid-template-columns: 1fr; }
       .hero-right { display: none; }
       .hero-left { padding: 64px 32px; min-height: calc(100vh - var(--nav-h)); }
+      .hero-ctas { align-items: flex-start; }
+      .hero-ctas .btn-primary,
+      .hero-ctas .btn-ghost {
+        width: min(100%, 220px);
+        justify-content: flex-start;
+        text-align: left;
+      }
       .hero-watermark { left: 0; font-size: 30vw; }
       .hero-headline { margin-bottom: 28px; }
       .hero-line-of { margin-bottom: 6px; }
@@ -992,6 +1080,7 @@
       .why-item { border-right: none !important; border-top: none !important; padding: 24px 0 !important; }
       .corporate-points { grid-template-columns: 1fr; }
       nav { padding: 0 24px; }
+      .nav-links { padding: 12px 24px 20px; }
       footer { padding: 0 24px; flex-wrap: wrap; height: auto; padding: 20px 24px; gap: 12px; }
       .footer-tag { display: none; }
       .scroll-top { right: 20px; bottom: 20px; width: 44px; height: 44px; }
@@ -1027,12 +1116,17 @@
     <!-- NAV -->
     <nav>
       <a href="#top" class="nav-logo">Love Stewards</a>
-      <ul class="nav-links">
+      <ul class="nav-links" id="site-menu">
         <li><a href="#occasions">Occasions</a></li>
         <li><a href="#collections">Collections</a></li>
         <li><a href="#corporate">Corporate</a></li>
         <li><a href="#contact" class="nav-cta">Get in Touch</a></li>
       </ul>
+      <button class="nav-toggle" type="button" aria-label="Toggle menu" aria-controls="site-menu" aria-expanded="false">
+        <span></span>
+        <span></span>
+        <span></span>
+      </button>
     </nav>
 
     <!-- ── HERO ── -->
@@ -1040,17 +1134,19 @@
       <div class="hero-left">
         <span class="ghost-watermark hero-watermark">GIFTING</span>
         <h1 class="hero-headline fade-up">
-          <span class="hero-line hero-line-light">Elevating the Art</span>
-          <span class="hero-line hero-line-light hero-line-of">of</span>
+          <span class="hero-line hero-line-light hero-line-desktop">Elevating the Art</span>
+          <span class="hero-line hero-line-light hero-line-of hero-line-desktop">of</span>
+          <span class="hero-line hero-line-light hero-line-mobile">Elevating</span>
+          <span class="hero-line hero-line-light hero-line-mobile">the Art of</span>
           <span class="hero-line hero-line-gold">Thoughtful</span>
           <span class="hero-line hero-line-gold">Gifting.</span>
         </h1>
         <p class="hero-sub fade-up">
-          Curated gift boxes designed to articulate your deepest sentiments — for every occasion, every milestone, every moment that matters.
+          Curated gift boxes designed to articulate your deepest sentiments for every occasion, every milestone, every moment that matters.
         </p>
         <div class="hero-ctas fade-up">
-          <a href="#collections" class="btn-primary">Explore Gift Boxes</a>
-          <a href="#contact" class="btn-ghost">Create a Custom Box</a>
+          <a href="#collections" class="btn-primary">EXPLORE GIFT BOXES</a>
+          <a href="#contact" class="btn-ghost">CREATE A CUSTOM BOX</a>
         </div>
       </div>
 
@@ -1462,6 +1558,47 @@
     sections.forEach(s => navObserver.observe(s));
 
     const scrollTopButton = document.querySelector('.scroll-top');
+    const navElement = document.querySelector('nav');
+    const navToggle = document.querySelector('.nav-toggle');
+    const navMenuLinks = document.querySelectorAll('.nav-links a');
+
+    if (navElement && navToggle) {
+      const closeNavMenu = () => {
+        navElement.classList.remove('nav-open');
+        navToggle.setAttribute('aria-expanded', 'false');
+      };
+
+      navToggle.addEventListener('click', () => {
+        const isOpen = navElement.classList.toggle('nav-open');
+        navToggle.setAttribute('aria-expanded', String(isOpen));
+      });
+
+      navMenuLinks.forEach(link => {
+        link.addEventListener('click', () => {
+          if (window.matchMedia('(max-width: 900px)').matches) {
+            closeNavMenu();
+          }
+        });
+      });
+
+      document.addEventListener('keydown', (event) => {
+        if (event.key === 'Escape') {
+          closeNavMenu();
+        }
+      });
+
+      document.addEventListener('click', (event) => {
+        if (!navElement.contains(event.target)) {
+          closeNavMenu();
+        }
+      });
+
+      window.addEventListener('resize', () => {
+        if (window.innerWidth > 900) {
+          closeNavMenu();
+        }
+      });
+    }
 
     const toggleScrollTop = () => {
       if (!scrollTopButton) return;

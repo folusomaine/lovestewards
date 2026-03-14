@@ -47,6 +47,7 @@
       padding: 32px 0;
       z-index: 200;
       background: var(--bg);
+      transition: transform 0.28s ease, box-shadow 0.28s ease;
     }
 
     .sidebar-icons { display: flex; flex-direction: column; gap: 20px; }
@@ -96,6 +97,33 @@
       stroke: none;
       flex-shrink: 0;
       transform: rotate(180deg);
+    }
+
+    .mobile-sidebar-toggle {
+      display: none;
+      position: fixed;
+      left: 12px;
+      bottom: 16px;
+      width: 34px;
+      height: 34px;
+      border: 1px solid var(--border);
+      border-radius: 999px;
+      background: rgba(27,29,34,0.88);
+      backdrop-filter: blur(8px);
+      color: var(--text-secondary);
+      font-size: 1rem;
+      font-weight: 600;
+      line-height: 1;
+      align-items: center;
+      justify-content: center;
+      cursor: pointer;
+      z-index: 220;
+      transition: left 0.28s ease, color 0.2s, border-color 0.2s, background 0.2s;
+    }
+    .mobile-sidebar-toggle:hover {
+      border-color: rgba(203,165,122,0.5);
+      color: var(--gold);
+      background: rgba(37,40,48,0.92);
     }
 
     /* ── NAV ── */
@@ -1022,7 +1050,22 @@
       .how-connector { display: none; }
     }
     @media (max-width: 900px) {
-      .sidebar { display: none; }
+      .sidebar {
+        display: flex;
+        transform: translateX(calc(-1 * var(--sidebar-w) - 2px));
+        pointer-events: none;
+      }
+      body.mobile-sidebar-open .sidebar {
+        transform: translateX(0);
+        box-shadow: 14px 0 32px rgba(0,0,0,0.28);
+        pointer-events: auto;
+      }
+      .mobile-sidebar-toggle { display: inline-flex; }
+      body.mobile-sidebar-open .mobile-sidebar-toggle {
+        left: calc(var(--sidebar-w) + 12px);
+        color: var(--gold);
+        border-color: rgba(203,165,122,0.45);
+      }
       .main-content { margin-left: 0; }
       .nav-toggle { display: inline-flex; }
       .nav-links {
@@ -1090,7 +1133,7 @@
 <body id="top">
 
   <!-- SIDEBAR -->
-  <aside class="sidebar">
+  <aside class="sidebar" id="site-sidebar">
     <div class="sidebar-icons">
       <a class="sidebar-icon" href="#" aria-label="Instagram">
         <svg viewBox="0 0 24 24"><rect x="2" y="2" width="20" height="20" rx="5" ry="5"/><circle cx="12" cy="12" r="4"/><circle cx="17.5" cy="6.5" r="1.5" fill="currentColor" stroke="none"/></svg>
@@ -1109,6 +1152,16 @@
       </div>
     </div>
   </aside>
+
+  <button
+    class="mobile-sidebar-toggle"
+    type="button"
+    aria-label="Expand sidebar"
+    aria-controls="site-sidebar"
+    aria-expanded="false"
+  >
+    <span class="chevron" aria-hidden="true">&gt;</span>
+  </button>
 
   <!-- MAIN -->
   <div class="main-content">
@@ -1561,6 +1614,8 @@
     const navElement = document.querySelector('nav');
     const navToggle = document.querySelector('.nav-toggle');
     const navMenuLinks = document.querySelectorAll('.nav-links a');
+    const sidebarElement = document.querySelector('.sidebar');
+    const mobileSidebarToggle = document.querySelector('.mobile-sidebar-toggle');
 
     if (navElement && navToggle) {
       const closeNavMenu = () => {
@@ -1596,6 +1651,46 @@
       window.addEventListener('resize', () => {
         if (window.innerWidth > 900) {
           closeNavMenu();
+        }
+      });
+    }
+
+    if (sidebarElement && mobileSidebarToggle) {
+      const sidebarChevron = mobileSidebarToggle.querySelector('.chevron');
+
+      const setMobileSidebarOpen = (isOpen) => {
+        document.body.classList.toggle('mobile-sidebar-open', isOpen);
+        mobileSidebarToggle.setAttribute('aria-expanded', String(isOpen));
+        mobileSidebarToggle.setAttribute('aria-label', isOpen ? 'Collapse sidebar' : 'Expand sidebar');
+        if (sidebarChevron) {
+          sidebarChevron.textContent = isOpen ? '<' : '>';
+        }
+      };
+
+      setMobileSidebarOpen(false);
+
+      mobileSidebarToggle.addEventListener('click', (event) => {
+        event.stopPropagation();
+        const isOpen = document.body.classList.toggle('mobile-sidebar-open');
+        setMobileSidebarOpen(isOpen);
+      });
+
+      document.addEventListener('click', (event) => {
+        if (!document.body.classList.contains('mobile-sidebar-open')) return;
+        if (window.innerWidth > 900) return;
+        if (sidebarElement.contains(event.target) || mobileSidebarToggle.contains(event.target)) return;
+        setMobileSidebarOpen(false);
+      });
+
+      document.addEventListener('keydown', (event) => {
+        if (event.key === 'Escape') {
+          setMobileSidebarOpen(false);
+        }
+      });
+
+      window.addEventListener('resize', () => {
+        if (window.innerWidth > 900) {
+          setMobileSidebarOpen(false);
         }
       });
     }
